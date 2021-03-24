@@ -290,9 +290,9 @@ server <- function(input, output) {
         if (nrow(total)>0) {
           INDEXFin <- which(colnames(total)==input$dynamicTopY)
           INDEXFinSh <- which(colnames(total)=="Shared1")
-          TopGeom <- list(ggplot2::geom_point(data = total, mapping = ggrepel::aes(x = total[,INDEXFinSh], y = total[,INDEXFin]), color ='dodgerblue', shape = 13, size = 9),
-                          ggrepel::geom_label_repel(ggrepel::aes(x = total[,INDEXFinSh], y = total[,INDEXFin], label = total$ID), box.padding   = 0.35,  point.padding = 0.5, segment.color = 'grey50'),
-                          ggplot2::geom_point(data = total, mapping = ggrepel::aes(x = total[,INDEXFinSh], y = total[,INDEXFin]), color ='dodgerblue', shape = 18, size = 3.5)
+          TopGeom <- list(ggplot2::geom_point(data = total, mapping = ggplot2::aes(x = total[,INDEXFinSh], y = total[,INDEXFin]), color ='dodgerblue', shape = 13, size = 9),
+                          ggrepel::geom_label_repel(ggplot2::aes(x = total[,INDEXFinSh], y = total[,INDEXFin], label = total$ID), box.padding   = 0.35,  point.padding = 0.5, segment.color = 'grey50'),
+                          ggplot2::geom_point(data = total, mapping = ggplot2::aes(x = total[,INDEXFinSh], y = total[,INDEXFin]), color ='dodgerblue', shape = 18, size = 3.5)
           )
           return(TopGeom)
         } else {
@@ -336,9 +336,9 @@ server <- function(input, output) {
         if (nrow(total)>0) {
           INDEXFin <- which(colnames(total)==input$dynamicBottomY)
           INDEXFinSh <- which(colnames(total)=="Shared1")
-          BottomGeom <- list(ggplot2::geom_point(data = total, mapping = ggrepel::aes(x = total[,INDEXFinSh], y = total[,INDEXFin]), color ='dodgerblue', shape = 13, size = 9),
-                             ggrepel::geom_label_repel(ggrepel::aes(x = total[,INDEXFinSh], y = total[,INDEXFin], label = total$ID), box.padding   = 0.35,  point.padding = 0.5, segment.color = 'grey50'),
-                             ggplot2::geom_point(data = total, mapping = ggrepel::aes(x = total[,INDEXFinSh], y = total[,INDEXFin]), color ='dodgerblue', shape = 18, size = 3.5)
+          BottomGeom <- list(ggplot2::geom_point(data = total, mapping = ggplot2::aes(x = total[,INDEXFinSh], y = total[,INDEXFin]), color ='dodgerblue', shape = 13, size = 9),
+                             ggrepel::geom_label_repel(ggplot2::aes(x = total[,INDEXFinSh], y = total[,INDEXFin], label = total$ID), box.padding   = 0.35,  point.padding = 0.5, segment.color = 'grey50'),
+                             ggplot2::geom_point(data = total, mapping = ggplot2::aes(x = total[,INDEXFinSh], y = total[,INDEXFin]), color ='dodgerblue', shape = 18, size = 3.5)
           )
 
           return(BottomGeom)
