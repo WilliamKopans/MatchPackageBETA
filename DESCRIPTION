@@ -1,15 +1,10 @@
-Package: shinyAppDemo
+Package: Match
 Type: Package
-Title: Implements a demo shiny application inside a package
-Version: 0.1.0
-Author: Mark Sellors
-Maintainer: Mark Sellos <msellors@mango-solutions.com>
-Description: A small package that implements the 'geyser' shiny app inside a 
-    package.
-    The geyser shiny app is the small app provided by the RStudio IDE when you
-    click to create a new "Shiny Web App...".
-    In this package that shiny app has been broken up into parts as a
-    demonstration of how one might approach the packaging of such an app.
+Title: Matches Time Series Data
+Version: 1.0.0
+Author: William Kopans
+Maintainer: William Kopans <william.kopans@wheelerschool.org>
+Description: Front end application to allign time scales.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
