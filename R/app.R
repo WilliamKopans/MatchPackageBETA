@@ -34,13 +34,8 @@
 
 ui <- fluidPage(theme = shinytheme("spacelab"),
 
-
-                titlePanel("Match"),
-
-
-                navlistPanel(
-                  "Pages:",
-                  tabPanel("Top Data Import",
+                navbarPage("MatchApp",
+                           tabPanel("Top Data Import",
                            h3("Import Data to the Top Plot"),
 
                            sidebarLayout(
@@ -95,7 +90,7 @@ ui <- fluidPage(theme = shinytheme("spacelab"),
                                #heckboxGroupInput("FinalBottomTransformations", "Data Transformations:",
                                #                  choiceNames = list(("Zero-Mean"), ("Any Other?")),
                                #                  choiceValues = list("ZeroMeanBottom", "AnyOther") #https://shiny.rstudio.com/reference/shiny/latest/checkboxGroupInput.html
-                               #,
+                               
 
                                #~~~~~~~~~~~~~~~
 
@@ -531,14 +526,16 @@ server <- function(input, output) {
     #Check that Tie points exist in each
     #Remove empty rows DONE
     #TieDataFilePath()
-    m <- TieDataFilePath()
+    prior <- TieDataFilePath() 
     pathtie <- toString(TieDataFilePath())
-    m[rowSums(is.na(m)) != ncol(m), ]
-    write.table(x = m, file = pathtie, sep = " ", col.names = FALSE, row.names = FALSE)
-    showNotification(paste("Empty Rows Removed"), duration = 4)
-
-
-
+    exportTieRemNA <- prior[rowSums(is.na(prior)) != ncol(prior), ]
+   
+    if (identical(prior, exportTieRemNA)==FALSE) { #If any row has an NA value it removes the row assuming it was clicked in error. Can add a second confirmation.
+      showNotification(paste("Empty Rows Removed"), duration = 4)
+    }
+    
+    write.table(x = exportTieRemNA, file = pathtie, sep = " ", col.names = FALSE, row.names = FALSE) #Might want to export in scientific notation, ask.
+    #Could have different cores be assigned names then use this final step to transition them to unique numbers (similar to one hot encoding)
   })
 
 
