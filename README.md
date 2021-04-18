@@ -20,6 +20,7 @@ There's only one exported function in the package and it runs the Shiny app:
 
 ``` r
 shinyAppDemo::launchApp()
+Match::launchApp()
 ```
 
 ---
