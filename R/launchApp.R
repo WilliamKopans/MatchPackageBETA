@@ -4,7 +4,7 @@
 #'
 #' @return shiny application object
 #'
-#' @example \dontrun {launchApp()}
+#' @example \dontrun {Match::launchApp()}
 #'
 #' @import shiny
 
@@ -14,5 +14,12 @@ launchApp <- function() {
   #shinyApp(ui = shinyAppUI, server = shinyAppServer)
   #shinyApp(ui = shinyAppUI, server = shinyAppServer)
   #shinyApp(ui, server)
-  shiny::runApp("~/Documents/Coding/TimHerbertBrown/GUImatch/Package/R/app.R")
+  
+  CurrentDir <- getwd()
+  
+  CurrentDir <- gsub("/MatchPackage", "/Package/R/app.R", CurrentDir)
+  #print(CurrentDir)
+  
+  #shiny::runApp("~/GUImatch/Package/R/app.R")
+  shiny::runApp(CurrentDir)
 }
