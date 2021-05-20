@@ -33,7 +33,7 @@
 
 
 
-ui <- fluidPage(theme = shinytheme("spacelab"), #App Not Applicable
+ui <- fluidPage( #App Not Applicable
                 
                 navbarPage("MatchApp App 2 Test",
                            tabPanel("Top Data Import",

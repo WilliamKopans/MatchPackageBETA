@@ -26,8 +26,5 @@ Match::launchApp()
 ---
 
 
-<<<<<<< Updated upstream
-> Credit to https://github.com/MangoTheCat/shinyAppDemo for the boilerplate code.
-=======
-> Credit to https://github.com/MangoTheCat/shinyAppDemo for the boilerplate code.
->>>>>>> Stashed changes
+
+Credit to https://github.com/MangoTheCat/shinyAppDemo for the boilerplate code.

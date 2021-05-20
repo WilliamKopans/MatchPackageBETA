@@ -5,15 +5,15 @@
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "0",
+    "hash" : "4126686074",
     "id" : "11424B6",
-    "lastKnownWriteTime" : 1621519986,
-    "last_content_update" : 1621519986,
+    "lastKnownWriteTime" : 1621521059,
+    "last_content_update" : 1621521059132,
     "path" : "~/Documents/Coding/TimHerbertBrown/MatchPackageBETA/R/launchApp.R",
     "project_path" : "R/launchApp.R",
     "properties" : {
-        "cursorPosition" : "21,2",
-        "scrollLine" : "2"
+        "cursorPosition" : "20,35",
+        "scrollLine" : "4"
     },
     "read_only" : false,
     "read_only_alternatives" : [

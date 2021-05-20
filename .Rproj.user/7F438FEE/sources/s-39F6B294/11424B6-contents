@@ -18,7 +18,7 @@ launchApp <- function() {
   CurrentDir <- getwd()
   
   #CurrentDir <- gsub("/MatchPackage.*", "/Package/R/app.R", CurrentDir)
-  CurrentDir <- paste(CurrentDir, "/Package/R/app.R", sep="")
+  CurrentDir <- paste(CurrentDir, "/app.R", sep="")
   #print(CurrentDir)
   
   
