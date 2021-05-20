@@ -1,0 +1,25 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1621518350064.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "655DB15C",
+    "lastKnownWriteTime" : 1618775318,
+    "last_content_update" : 1618775318,
+    "path" : "~/Documents/Coding/TimHerbertBrown/MatchPackageBETA/R/app.R",
+    "project_path" : "R/app.R",
+    "properties" : {
+        "cursorPosition" : "23,21",
+        "scrollLine" : "0"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

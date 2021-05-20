@@ -1,0 +1,25 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1621518381221.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "11424B6",
+    "lastKnownWriteTime" : 1621519963,
+    "last_content_update" : 1621519963,
+    "path" : "~/Documents/Coding/TimHerbertBrown/MatchPackageBETA/R/launchApp.R",
+    "project_path" : "R/launchApp.R",
+    "properties" : {
+        "cursorPosition" : "21,2",
+        "scrollLine" : "4"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
