@@ -1,9 +1,9 @@
 {
-    "path" : "~/Documents/Coding/TimHerbertBrown/MatchPackageBETA/R",
-    "sortOrder" : [
+    "path": "~/Documents/Coding/TimHerbertBrown/MatchPackageBETA",
+    "sortOrder": [
         {
-            "ascending" : true,
-            "columnIndex" : 2
+            "ascending": true,
+            "columnIndex": 2
         }
     ]
 }

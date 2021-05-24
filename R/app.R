@@ -30,15 +30,24 @@
 #' @import shinyWidgets
 #' @import stats
 #' @import utils
+#' shinyjs
 
 
+library(shinyFiles)
+library(data.table)
+library(shinythemes)
+library(shinyjs)
+#library(ggrepel, rio, astrochron, ggiraph, shinyjs, caret, shinyFiles, stringr, data.table, tibble, ggrepel, shinythemes, shinyWidgets, stats, utils)
 
-ui <- fluidPage(theme = shinytheme("spacelab"), #App Not Applicable
-                
-                navbarPage("MatchApp App 2 Test",
+
+jscode <- "shinyjs.closeWindow = function() { window.close(); }"
+
+ui <- fluidPage(theme = shinythemes::shinytheme("spacelab"),
+                useShinyjs(),
+                extendShinyjs(text = jscode, functions = c("closeWindow")),
+                navbarPage("MatchApp App", id = "tabs",
                            tabPanel("Top Data Import",
                                     h3("Import Data to the Top Plot"),
-                                    
                                     sidebarLayout(
                                       sidebarPanel(
                                         fileInput("Top", "Choose Data File", multiple = FALSE, accept = c("text/csv","text/comma-separated-values,text/plain",".csv")),
@@ -71,6 +80,7 @@ ui <- fluidPage(theme = shinytheme("spacelab"), #App Not Applicable
                                       )
                                     )
                            ),
+                           
                            tabPanel("Bottom Data Import",
                                     h3("Import Data to the Bottom Plot"),
                                     
@@ -144,7 +154,8 @@ ui <- fluidPage(theme = shinytheme("spacelab"), #App Not Applicable
                            tabPanel("Relative Accumulation Rate or C code",
                                     h3("This is an extra panel. If the C++ can be integrated, the button to run it can go here."),
                                     h3("Likely, there will be a button to run the C++ then open a new window depending on how the C++ code is written"),
-                           )
+                           ),
+                           tabPanel("Close")
                 )
 )
 
@@ -577,6 +588,19 @@ server <- function(input, output) {
   #~~~~~~~~~~~~~
   
   
+
+  
+  observeEvent(input$tabs, {
+    
+    if(input$tabs == "Close"){
+      js$closeWindow()
+      stopApp()
+    
+    } 
+    
+  })
+  
+
 }
 
 

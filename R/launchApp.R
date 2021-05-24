@@ -16,12 +16,16 @@ launchApp <- function() {
   #shinyApp(ui, server)
   
   CurrentDir <- getwd()
-  
+   #/Users/williamkopans/Documents/Coding/TimHerbertBrown/GUImatch/MatchPackage/R/launchApp.R
   #CurrentDir <- gsub("/MatchPackage.*", "/Package/R/app.R", CurrentDir)
-  CurrentDir <- paste(CurrentDir, "/app.R", sep="")
+  CurrentDir <- paste(CurrentDir, "/R/app.R", sep="")
   #print(CurrentDir)
   
   
   #shiny::runApp("~/GUImatch/Package/R/app.R")
+  #shiny::runApp("/Users/williamkopans/Documents/Coding/TimHerbertBrown/MatchPackageBETA/R/app.R")
   shiny::runApp(CurrentDir)
 }
+
+
+
