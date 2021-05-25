@@ -15,8 +15,8 @@ launchApp <- function() {
   #CurrentDir <- getwd()
   #CurrentDir <- paste(CurrentDir, "/R/app.R", sep="")
   #shiny::runApp(CurrentDir)
-  shinyApp(ui = shinyAppUI, server = shinyAppServer)
-  #shiny::runApp()
+  #shinyApp(ui = shinyAppUI, server = shinyAppServer)
+  shiny::runApp(app)
   
 #  tryCatch(
 #    expr = {
