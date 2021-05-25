@@ -16,18 +16,10 @@ launchApp <- function() {
   #CurrentDir <- paste(CurrentDir, "/R/app.R", sep="")
   #shiny::runApp(CurrentDir)
   
-  
+      print(paste0("Directory: ", getwd()))
   
       shiny::runApp("/Users/williamkopans/Documents/Coding/TimHerbertBrown/MatchPackageBETA/R/app.R")
 
-  
-  
-  
-  
-  
-  
-  
-  
   
   
 }

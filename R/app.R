@@ -173,7 +173,7 @@ server <- function(input, output) {
         # return a safeError if a parsing error occurs
         stop(safeError(e))})
     if("ZeroMean" %in% input$FinalTopTransformations){
-      dfTop <- predict(preProcess(dfTop, method=c("center", "scale")), dfTop) #Zero-Meaned data
+      dfTop <- stats::predict(preProcess(dfTop, method=c("center", "scale")), dfTop) #Zero-Meaned data
       #INDEX <- which(colnames(dfTop)==input$dynamicTopY)
       #dfTop[, INDEX] <- predict(preProcess(as.data.frame(dfTop[, INDEX])), as.data.frame(dfTop[, INDEX])) #Zero-Meaned data
       #print(summary(dfTop))
@@ -282,8 +282,8 @@ server <- function(input, output) {
         names(SameTop) <- "Shared"
         
         TopShared <- TopOriginal %>%
-          add_column(SameTop) %>%
-          filter(SameTop == TRUE)
+          tibble::add_column(SameTop) %>%
+          dplyr::filter(SameTop == TRUE)
         
         
         Main <- as.data.frame(StructuredTopData())
@@ -327,8 +327,8 @@ server <- function(input, output) {
         names(SameBot) <- "Shared"
         
         BottomShared <- BotOriginal %>%
-          add_column(SameBot) %>%
-          filter(SameBot == TRUE)
+          tibble::add_column(SameBot) %>%
+          dplyr::filter(SameBot == TRUE)
         
         
         Main <- as.data.frame(StructuredBottomData())
@@ -367,9 +367,6 @@ server <- function(input, output) {
         ggplot2::geom_point(StructuredBottomData(), mapping = ggplot2::aes_string(x= input$dynamicBottomX, y = input$dynamicBottomY),alpha = 0.3) +
         ggplot2::theme_bw() +
         ggplot2::coord_cartesian(ylim = c(input$YRangeBot[1], input$YRangeBot[2]), xlim = c(input$XRangeBot[1], input$XRangeBot[2]), expand = FALSE) + BottomGeom()
-      
-      
-      
       
       
     })
