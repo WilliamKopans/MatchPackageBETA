@@ -31,8 +31,7 @@
 #' @import stats
 #' @import utils
 #' @import dplyr
-#' @import shinyjs
-#' @import tibble
+#' @import 
 
 
 library(shinyFiles)
@@ -43,7 +42,6 @@ library(dplyr)
 library(tibble)
 
 #library(ggrepel, rio, astrochron, ggiraph, shinyjs, caret, shinyFiles, stringr, data.table, tibble, ggrepel, shinythemes, shinyWidgets, stats, utils)
-
 
 jscode <- "shinyjs.closeWindow = function() { window.close(); }"
 
@@ -148,18 +146,14 @@ ui <- fluidPage(theme = shinythemes::shinytheme("spacelab"),
                                     plotOutput("FullBottomPlot", click = "BottomPlot_click"),
                                     
                                     
-                                    
                            ),
                            tabPanel("Relative Accumulation Rate or C code",
                                     h3("This is an extra panel. If the C++ can be integrated, the button to run it can go here."),
                                     h3("Likely, there will be a button to run the C++ then open a new window depending on how the C++ code is written"),
                            ),
-                           tabPanel("Close")
+                           tabPanel("Exit Application")
                 )
 )
-
-
-
 
 
 
@@ -216,10 +210,6 @@ server <- function(input, output) {
         ggplot2::geom_point(StructuredTopData(), mapping = ggplot2::aes_string(x= input$dynamicTopX, y = input$dynamicTopY),alpha = 0.3) +
         ggplot2::theme_bw()+
         ggplot2::coord_cartesian(ylim = c(input$YRangeTop[1], input$YRangeTop[2]), xlim = c(input$XrangeTop[1], input$XrangeTop[2]), expand = FALSE) + TopGeom()
-      
-      
-      
-      
       
       
     })
@@ -356,8 +346,6 @@ server <- function(input, output) {
       return(BottomGeom)
     }
   })
-  
-  
   
   observeEvent(input$FinalShowBottomPlot, {
     output$FullBottomPlot <- renderPlot({
@@ -504,7 +492,7 @@ server <- function(input, output) {
       showNotification(paste("Point(s) will disapear after next plot action"), duration = 7, type = "message")
       
       df <- TiePointData()
-      df[input$FinalRowNumber,2] <- 555 #Double check this line
+      #df[input$FinalRowNumber,2] <- 555 #Double check this line
       
       print(df[input$FinalRowNumber,])
       df[input$FinalRowNumber,1] <- NA
@@ -588,7 +576,7 @@ server <- function(input, output) {
   
   observeEvent(input$tabs, {
     
-    if(input$tabs == "Close"){
+    if(input$tabs == "Exit Application"){
       js$closeWindow()
       stopApp()
     
