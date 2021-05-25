@@ -11,7 +11,7 @@
 
 # wrapper for shiny::shinyApp()
 launchApp <- function() {
-  message('Dev Version 1.1')
+  message('Dev Version HC2')
   #CurrentDir <- getwd()
   #CurrentDir <- paste(CurrentDir, "/R/app.R", sep="")
   #shiny::runApp(CurrentDir)
@@ -20,7 +20,7 @@ launchApp <- function() {
   
   tryCatch(
     expr = {
-      shinyApp(ui = shinyAppUI, server = shinyAppServer)
+      shiny::runApp("/Users/williamkopans/Documents/Coding/TimHerbertBrown/MatchPackageBETA/R/app.R")
       #CurrentDir <- getwd()
       #CurrentDir <- paste(CurrentDir, "/R/app.R", sep="")
       #shiny::runApp(CurrentDir)
