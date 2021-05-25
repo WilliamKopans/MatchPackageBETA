@@ -1,6 +1,4 @@
-# shinyAppDemo
-
-The shinyAppDemo package has been created to demonstrate one method of packaging a Shiny application.
+# Shiny Match App
 
 ## Installation
 
@@ -19,7 +17,6 @@ source("https://install-github.me/WilliamKopans/MatchPackageBETA")
 There's only one exported function in the package and it runs the Shiny app:
 
 ``` r
-shinyAppDemo::launchApp()
 Match::launchApp()
 ```
 
@@ -27,4 +24,4 @@ Match::launchApp()
 
 
 
-Credit to https://github.com/MangoTheCat/shinyAppDemo for the boilerplate code.
+Credit to https://github.com/MangoTheCat/shinyAppDemo for the boilerplate R Package code.
