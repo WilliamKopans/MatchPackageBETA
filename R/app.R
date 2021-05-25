@@ -37,6 +37,7 @@ library(shinyFiles)
 library(data.table)
 library(shinythemes)
 library(shinyjs)
+
 #library(ggrepel, rio, astrochron, ggiraph, shinyjs, caret, shinyFiles, stringr, data.table, tibble, ggrepel, shinythemes, shinyWidgets, stats, utils)
 
 
@@ -210,7 +211,11 @@ server <- function(input, output) {
   #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   
   observeEvent(input$FinalShowTopPlot, {
-    
+    print(TopGeom())
+    print(typeof(TopGeom()))
+
+          
+          
     output$FullTopPlot <- renderPlot({
       ggplot2::ggplot()+
         ggplot2::geom_line(StructuredTopData(), mapping = ggplot2::aes_string(x= input$dynamicTopX, y = input$dynamicTopY)) +
@@ -508,7 +513,7 @@ server <- function(input, output) {
       showNotification(paste("Point(s) will disapear after next plot action"), duration = 7, type = "message")
       
       df <- TiePointData()
-      df[input$FinalRowNumber,2] <- 555
+      df[input$FinalRowNumber,2] <- 555 #Double check this line
       
       print(df[input$FinalRowNumber,])
       df[input$FinalRowNumber,1] <- NA
