@@ -30,13 +30,15 @@
 #' @import shinyWidgets
 #' @import stats
 #' @import utils
-#' shinyjs
+#' @import dplyr
+#' @import shinyjs
 
 
 library(shinyFiles)
 library(data.table)
 library(shinythemes)
 library(shinyjs)
+library(dplyr) 
 
 #library(ggrepel, rio, astrochron, ggiraph, shinyjs, caret, shinyFiles, stringr, data.table, tibble, ggrepel, shinythemes, shinyWidgets, stats, utils)
 

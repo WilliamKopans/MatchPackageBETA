@@ -11,7 +11,7 @@
 
 # wrapper for shiny::shinyApp()
 launchApp <- function() {
-  message('Dev Version HC2')
+  message('Dev Version HC3')
   #CurrentDir <- getwd()
   #CurrentDir <- paste(CurrentDir, "/R/app.R", sep="")
   #shiny::runApp(CurrentDir)
