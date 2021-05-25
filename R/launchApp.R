@@ -11,18 +11,19 @@
 
 # wrapper for shiny::shinyApp()
 launchApp <- function() {
-  message('Dev Version 1.0')
+  message('Dev Version 1.1')
   #CurrentDir <- getwd()
   #CurrentDir <- paste(CurrentDir, "/R/app.R", sep="")
   #shiny::runApp(CurrentDir)
-  shinyApp(ui = shinyAppUI, server = shinyAppServer)
+  
   
   
   tryCatch(
     expr = {
-      CurrentDir <- getwd()
-      CurrentDir <- paste(CurrentDir, "/R/app.R", sep="")
-      shiny::runApp(CurrentDir)
+      shinyApp(ui = shinyAppUI, server = shinyAppServer)
+      #CurrentDir <- getwd()
+      #CurrentDir <- paste(CurrentDir, "/R/app.R", sep="")
+      #shiny::runApp(CurrentDir)
     },
     error = function(e){ 
       message('Caught an error!')
