@@ -17,6 +17,8 @@ launchApp <- function() {
   #shiny::runApp(CurrentDir)
   
       print(paste0("Directory: ", getwd()))
+      
+      print(paste0("In Directory: ", list.files(getwd())))
   
       shiny::runApp("/Users/williamkopans/Documents/Coding/TimHerbertBrown/MatchPackageBETA/R/app.R")
 
