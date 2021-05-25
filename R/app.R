@@ -495,7 +495,7 @@ server <- function(input, output) {
   })
   
   observeEvent(input$launchDelete, {
-    ask_confirmation(
+    shinyWidgets::ask_confirmation(
       inputId = "myconfirmation",
       title = "Confirm Row Deletion",
       
