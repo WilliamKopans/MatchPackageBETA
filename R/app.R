@@ -32,6 +32,7 @@
 #' @import utils
 #' @import dplyr
 #' @import shinyjs
+#' @import tibble
 
 
 library(shinyFiles)
@@ -39,6 +40,7 @@ library(data.table)
 library(shinythemes)
 library(shinyjs)
 library(dplyr) 
+library(tibble)
 
 #library(ggrepel, rio, astrochron, ggiraph, shinyjs, caret, shinyFiles, stringr, data.table, tibble, ggrepel, shinythemes, shinyWidgets, stats, utils)
 

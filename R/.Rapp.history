@@ -25,5 +25,95 @@ launchApp()
 GUIMatchApplicationGolem::run_app()
 devtools::install_github("WilliamKopans/GUIMatchApplicationGolem")
 GUIMatchApplicationGolem::run_app()
-library(shinyAppDemo)
-launchApp()
+library(tidyverse)
+RV <- read_html("https://rvest.tidyverse.org/")
+library(rvest)
+RV <- read_html("https://rvest.tidyverse.org/")
+RV <- RV %>% html_elements("sourceCode R")
+print(RV)
+devtools::install_github("WilliamKopans/MatchPackageBETA")
+source("https://install-github.me/WilliamKopans/MatchPackageBETA")
+devtools::install_github("WilliamKopans/MatchPackageBETA")
+Sys.unsetenv("GITHUB_PAT")
+devtools::install_github("WilliamKopans/MatchPackageBETA")
+Match::Launchapp()
+Match::launchApp()
+install.packages("scales")
+Match::launchApp()
+install.packages("rlang", type = "source")
+Match::launchApp()
+devtools::install_github("WilliamKopans/MatchPackageBETA")
+?devtools::install_github
+remotes::install_github("WilliamKopans/MatchPackageBETA")
+devtools::install_github("WilliamKopans/MatchPackageBETA")
+install.packages("devtools")
+library(devtools)
+devtools::install_github("WilliamKopans/MatchPackageBETA")
+github_pat(1)
+Sys.getenv("GITHUB_PAT")
+Sys.unsetenv("GITHUB_PAT")
+Sys.getenv("GITHUB_PAT")
+devtools::install_github("WilliamKopans/MatchPackageBETA")
+Match::launchApp()
+devtools::install_github("WilliamKopans/MatchPackageBETA")
+Match::launchApp()
+devtools::install_github("WilliamKopans/MatchPackageBETA")
+Match::launchApp()
+devtools::install_github("WilliamKopans/MatchPackageBETA")
+Match::launchApp()
+devtools::install_github("WilliamKopans/MatchPackageBETA")
+Match::launchApp()
+?devtools::install_github("WilliamKopans/MatchPackageBETA")
+devtools::install_github("WilliamKopans/MatchPackageBETA",#
+  upgrade = c("always"),#
+  force = TRUE,#
+  quiet = TRUE,)
+)
+devtools::install_github("WilliamKopans/MatchPackageBETA",#
+  upgrade = c("always"),#
+  force = TRUE,#
+  quiet = TRUE)
+Match::launchApp()
+devtools::install_github("WilliamKopans/MatchPackageBETA",#
+  upgrade = c("always"), force = TRUE, quiet = TRUE)
+Match::launchApp()
+devtools::install_github("WilliamKopans/MatchPackageBETA",#
+  upgrade = c("always"), force = TRUE, quiet = FALSE)
+Match::launchApp()
+devtools::install_github("WilliamKopans/MatchPackageBETA",#
+  upgrade = c("always"), force = TRUE, quiet = FALSE)
+Match::launchApp()
+devtools::install_github("WilliamKopans/MatchPackageBETA",#
+  upgrade = c("always"), force = TRUE, quiet = FALSE)
+Sys.unsetenv("GITHUB_PAT")
+devtools::install_github("WilliamKopans/MatchPackageBETA",#
+  upgrade = c("always"), force = TRUE, quiet = FALSE)
+Match::launchApp()
+Sys.unsetenv("GITHUB_PAT")
+devtools::install_github("WilliamKopans/MatchPackageBETA",#
+  upgrade = c("always"), force = TRUE, quiet = TRUE)
+Match::launchApp()
+Sys.unsetenv("GITHUB_PAT")
+devtools::install_github("WilliamKopans/MatchPackageBETA",#
+  upgrade = c("always"), force = TRUE, quiet = TRUE)
+Match::launchApp()
+Sys.unsetenv("GITHUB_PAT")
+devtools::install_github("WilliamKopans/MatchPackageBETA",#
+  upgrade = c("always"), force = TRUE, quiet = TRUE)
+Match::launchApp()
+Sys.unsetenv("GITHUB_PAT")
+devtools::install_github("WilliamKopans/MatchPackageBETA",#
+  upgrade = c("always"), force = TRUE, quiet = TRUE)
+Match::launchApp()
+Sys.unsetenv("GITHUB_PAT")
+devtools::install_github("WilliamKopans/MatchPackageBETA",#
+  upgrade = c("always"), force = TRUE, quiet = TRUE)
+Match::launchApp()
+Sys.unsetenv("GITHUB_PAT")
+devtools::install_github("WilliamKopans/MatchPackageBETA",#
+  upgrade = c("always"), force = TRUE, quiet = TRUE)
+Match::launchApp()
+Sys.unsetenv("GITHUB_PAT")
+devtools::install_github("WilliamKopans/MatchPackageBETA",#
+  upgrade = c("always"), force = TRUE, quiet = TRUE)
+Match::launchApp()
