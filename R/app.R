@@ -14,7 +14,7 @@
 #library(ggrepel, warn.conflicts = FALSE)
 #library(shinythemes, warn.conflicts = FALSE)
 #library(shinyWidgets, warn.conflicts = FALSE)
-
+                      #   **Main App File**
 #' @import ggrepel
 #' @import rio
 #' @import astrochron
@@ -134,19 +134,13 @@ ui <- fluidPage(theme = shinythemes::shinytheme("spacelab"),
                                       inputId = "FinalCheck",
                                       label = "Finalize Tie File"
                                     ),
-                                    fluidRow(
-                                      column(6,
-                                             
-                                      ),
-                                      column(6,
-                                             
-                                      ),
-                                    ),
                                     uiOutput("SliderTopX"),
                                     uiOutput("SliderTopY"),
+                                    column(3,numericInput("CoreTop", label = ("Core Number"), value = 0)),
                                     plotOutput("FullTopPlot", click = "TopPlot_click"),
                                     uiOutput("SliderBotX"),
                                     uiOutput("SliderBotY"),
+                                    column(3,numericInput("CoreBottom", label = ("Core Number"), value = 1)),
                                     plotOutput("FullBottomPlot", click = "BottomPlot_click"),
                                     
                                     
@@ -444,7 +438,7 @@ server <- function(input, output) {
       df[input$FinalRowNumber,2] <- selectedDataTop()
       
       
-      df[input$FinalRowNumber,1] <- 1
+      df[input$FinalRowNumber,1] <- input$CoreTop 
       
       
       pathtie <- toString(TieDataFilePath())
@@ -460,7 +454,7 @@ server <- function(input, output) {
       df[input$FinalRowNumber,4] <- selectedDataBot()
       
       
-      df[input$FinalRowNumber,3] <- 0
+      df[input$FinalRowNumber,3] <- input$CoreBottom 
       
       
       pathtie <- toString(TieDataFilePath())
