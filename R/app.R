@@ -211,17 +211,13 @@ server <- function(input, output) {
   #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   
   observeEvent(input$FinalShowTopPlot, {
-    print(TopGeom())
-    print(typeof(TopGeom()))
-
-          
-          
+ 
     output$FullTopPlot <- renderPlot({
       ggplot2::ggplot()+
         ggplot2::geom_line(StructuredTopData(), mapping = ggplot2::aes_string(x= input$dynamicTopX, y = input$dynamicTopY)) +
         ggplot2::geom_point(StructuredTopData(), mapping = ggplot2::aes_string(x= input$dynamicTopX, y = input$dynamicTopY),alpha = 0.3) +
         ggplot2::theme_bw()+
-        ggplot2::coord_cartesian(ylim = c(input$YRangeTop[1], input$YRangeTop[2]), xlim = c(input$XrangeTop[1], input$XrangeTop[2]), expand = FALSE) + ggplot2::TopGeom()
+        ggplot2::coord_cartesian(ylim = c(input$YRangeTop[1], input$YRangeTop[2]), xlim = c(input$XrangeTop[1], input$XrangeTop[2]), expand = FALSE) + TopGeom()
       
       
       
@@ -372,7 +368,7 @@ server <- function(input, output) {
         ggplot2::geom_line(StructuredBottomData(), mapping = ggplot2::aes_string(x= input$dynamicBottomX, y = input$dynamicBottomY)) +
         ggplot2::geom_point(StructuredBottomData(), mapping = ggplot2::aes_string(x= input$dynamicBottomX, y = input$dynamicBottomY),alpha = 0.3) +
         ggplot2::theme_bw() +
-        ggplot2::coord_cartesian(ylim = c(input$YRangeBot[1], input$YRangeBot[2]), xlim = c(input$XRangeBot[1], input$XRangeBot[2]), expand = FALSE)+ ggplot2::BottomGeom()
+        ggplot2::coord_cartesian(ylim = c(input$YRangeBot[1], input$YRangeBot[2]), xlim = c(input$XRangeBot[1], input$XRangeBot[2]), expand = FALSE) + BottomGeom()
       
       
       
