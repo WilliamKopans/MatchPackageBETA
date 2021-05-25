@@ -559,7 +559,7 @@ server <- function(input, output) {
   
   TieDataFilePath <- reactive(
     if (length(parseFilePaths(roots, input$files)$datapath)!=0) { #New tie file import
-      return(str_remove(parseFilePaths(roots, input$files)$datapath, "^0+"))
+      return(stringr::str_remove(parseFilePaths(roots, input$files)$datapath, "^0+"))
     }
   )
   
