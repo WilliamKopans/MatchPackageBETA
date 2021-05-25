@@ -3,7 +3,7 @@
 ## Installation
 
 ``` r
-devtools::install_github("WilliamKopans/MatchPackageBETA")
+devtools::install_github("WilliamKopans/MatchPackageBETA",upgrade = c("always"), force = TRUE, quiet = TRUE)
 ```
 
 ...or...
