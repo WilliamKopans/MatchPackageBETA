@@ -34,6 +34,7 @@
 #' @import 
 
 
+
 library(shinyFiles)
 library(data.table)
 library(shinythemes)
@@ -426,13 +427,13 @@ server <- function(input, output) {
       df <- TiePointData()
       options( scipen = 7)
       df[input$FinalRowNumber,2] <- formatC(selectedDataTop(), format = "e")
-      df = format(df, format = "e", scientific = TRUE)
+      
       
       df[input$FinalRowNumber,1] <- formatC(input$CoreTop, format = "e")
       
-      df = format(df, format = "e", scientific = TRUE)
+      #df = format(df, format = "e", scientific = TRUE)
       pathtie <- toString(TieDataFilePath())
-      write.table(x = df, file = pathtie, sep = " ", col.names = FALSE, row.names = FALSE)
+      write.table(x = format(df, format = "e", scientific = TRUE), file = pathtie, sep = " ", col.names = FALSE, row.names = FALSE)
       
     }
     
@@ -443,13 +444,13 @@ server <- function(input, output) {
       options( scipen = 7)
       #numeric(0) if click off point
       df[input$FinalRowNumber,4] <- formatC(selectedDataBot(), format = "e")
-      df = format(df, format = "e", scientific = TRUE)
+      
       
       df[input$FinalRowNumber,3] <- formatC(input$CoreBottom, format = "e")
       
-      df = format(df, format = "e", scientific = TRUE)
+      
       pathtie <- toString(TieDataFilePath())
-      write.table(x = df, file = pathtie, sep = " ", col.names = FALSE, row.names = FALSE)
+      write.table(x = format(df, format = "e", scientific = TRUE), file = pathtie, sep = " ", col.names = FALSE, row.names = FALSE)
     }
   })
   
