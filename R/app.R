@@ -261,7 +261,7 @@ server <- function(input, output) {
   TopGeom <- reactive({
     
     if (isTruthy(input$files) == TRUE && isTruthy(input$Bottom$datapath) == TRUE && isTruthy(input$Top$datapath) == TRUE) {
-      if (length(parseFilePaths(roots, input$files)$datapath)!=0) { #New tie file import
+      if (length(shinyFiles::parseFilePaths(roots, input$files)$datapath)!=0) { #New tie file import
         #print("Finding Tie Point Location")
         
         TopOriginal <- StructuredTopData()
@@ -424,12 +424,13 @@ server <- function(input, output) {
     if (length(selectedDataTop()) != 0) {
       
       df <- TiePointData()
-      df[input$FinalRowNumber,2] <- selectedDataTop()
+      options( scipen = 7)
+      df[input$FinalRowNumber,2] <- formatC(selectedDataTop(), format = "e")
+      df = format(df, format = "e", scientific = TRUE)
       
+      df[input$FinalRowNumber,1] <- formatC(input$CoreTop, format = "e")
       
-      df[input$FinalRowNumber,1] <- input$CoreTop 
-      
-      
+      df = format(df, format = "e", scientific = TRUE)
       pathtie <- toString(TieDataFilePath())
       write.table(x = df, file = pathtie, sep = " ", col.names = FALSE, row.names = FALSE)
       
@@ -439,13 +440,14 @@ server <- function(input, output) {
   TiePointEditBottom <- observeEvent(input$BottomPlot_click, {
     if (length(selectedDataBot()) != 0) {
       df <- TiePointData()
+      options( scipen = 7)
       #numeric(0) if click off point
-      df[input$FinalRowNumber,4] <- selectedDataBot()
+      df[input$FinalRowNumber,4] <- formatC(selectedDataBot(), format = "e")
+      df = format(df, format = "e", scientific = TRUE)
       
+      df[input$FinalRowNumber,3] <- formatC(input$CoreBottom, format = "e")
       
-      df[input$FinalRowNumber,3] <- input$CoreBottom 
-      
-      
+      df = format(df, format = "e", scientific = TRUE)
       pathtie <- toString(TieDataFilePath())
       write.table(x = df, file = pathtie, sep = " ", col.names = FALSE, row.names = FALSE)
     }
