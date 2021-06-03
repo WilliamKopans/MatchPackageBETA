@@ -266,6 +266,14 @@ server <- function(input, output) {
       if (length(shinyFiles::parseFilePaths(roots, input$files)$datapath)!=0) { #New tie file import
         #print("Finding Tie Point Location")
         
+        
+        
+        #Remove Scientific Notation to check:
+        #Revert <- as.data.frame(lapply(lapply(ScientificNotation,as.numeric), format, scientific = F)) #Removes scientific notation
+        #Revert <- as.data.frame(lapply(lapply(Revert,as.numeric), sprintf, fmt = "%s")) #Removes trailing zeros
+        
+        
+        
         TopOriginal <- StructuredTopData()
         INDEX <- which(colnames(StructuredTopData())==input$dynamicTopX)
         TieData <- TiePointData()[,2]
