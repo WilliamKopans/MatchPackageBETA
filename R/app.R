@@ -468,6 +468,8 @@ server <- function(input, output) {
       if (length(parseFilePaths(roots, input$files)$datapath)!=0) { #New tie file import
         pathtie <- toString(TieDataFilePath())
         read.table(pathtie, sep = "" , header = F,na.strings ="", stringsAsFactors= F)
+        print("Tie Point Data:")
+        print(read.table(pathtie, sep = "" , header = F,na.strings ="", stringsAsFactors= F))
       }
     }
     #read.table(file = pathtie,na.strings ="", stringsAsFactors= F, header = F)
@@ -535,11 +537,11 @@ server <- function(input, output) {
       exportTieRemNA <- FinTieToSci[rowSums(is.na(FinTieToSci)) != ncol(FinTieToSci), ]
       
       if (identical(FinTieToSci, exportTieRemNA)==FALSE) { #If any row has an NA value it removes the row assuming it was clicked in error. Can add a second confirmation.
-        showNotification(paste("Empty Rows Removed"), duration = 4)
+        showNotification(paste("Empty Rows"), duration = 4)
       }
       FinTieToSci <- exportTieRemNA
       
-      FinTieToSci <- as.data.frame(lapply(FinTieToSci, sprintf, fmt = "%14.7E"))
+      FinTieToSci <- as.data.frame(lapply(FinTieToSci, sprintf, fmt = "%E"))
       
       write.table(x = format(FinTieToSci, format = "e", scientific = TRUE), file = pathtie, sep = " ", col.names = FALSE, row.names = FALSE)
       print(head(FinTieToSci))
