@@ -31,7 +31,8 @@
 #' @import stats
 #' @import utils
 #' @import dplyr
-#' @import 
+
+
 
 
 
@@ -280,6 +281,7 @@ server <- function(input, output) {
         Main <- as.data.frame(StructuredTopData())
         names(Main)[INDEX] <- "Shared1"
         TieComp <- as.data.frame(TiePointData())
+        TieComp <- format(TieComp, scientific = FALSE)
         names(TieComp)[2] <- "Shared2"
         TieComp <- tibble::rowid_to_column(TieComp, "ID")
         total <- merge(Main,TieComp, by.x="Shared1", by.y="Shared2")
@@ -325,6 +327,7 @@ server <- function(input, output) {
         Main <- as.data.frame(StructuredBottomData())
         names(Main)[INDEX] <- "Shared1"
         TieComp <- as.data.frame(TiePointData())
+        TieComp <- format(TieComp, scientific = FALSE)
         names(TieComp)[4] <- "Shared2"
         TieComp <- tibble::rowid_to_column(TieComp, "ID")
         total <- merge(Main,TieComp, by.x="Shared1", by.y="Shared2")
@@ -489,6 +492,20 @@ server <- function(input, output) {
       
     )
   })
+  
+  observeEvent(input$FinalCheck, {
+    #Make tie file use scientific notation
+    
+    pathtie <- toString(TieDataFilePath())
+    
+    FinTieToSci <- read.table(pathtie, quote="\"", comment.char="")
+    
+    write.table(x = format(FinTieToSci, format = "e", scientific = TRUE), file = pathtie, sep = " ", col.names = FALSE, row.names = FALSE)
+    
+    
+  })
+  
+  
   
   observeEvent(input$myconfirmation, {
     if (isTRUE(input$myconfirmation)) {
