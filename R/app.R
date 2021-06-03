@@ -428,15 +428,14 @@ server <- function(input, output) {
     if (length(selectedDataTop()) != 0) {
       
       df <- TiePointData()
-      options( scipen = 7)
-      df[input$FinalRowNumber,2] <- formatC(selectedDataTop(), format = "e")
+      df[input$FinalRowNumber,2] <- selectedDataTop()
       
       
-      df[input$FinalRowNumber,1] <- formatC(input$CoreTop, format = "e")
+      df[input$FinalRowNumber,1] <- input$CoreTop 
       
-      #df = format(df, format = "e", scientific = TRUE)
+      
       pathtie <- toString(TieDataFilePath())
-      write.table(x = format(df, format = "e", scientific = TRUE), file = pathtie, sep = " ", col.names = FALSE, row.names = FALSE)
+      write.table(x = df, file = pathtie, sep = " ", col.names = FALSE, row.names = FALSE)
       
     }
     
@@ -444,16 +443,15 @@ server <- function(input, output) {
   TiePointEditBottom <- observeEvent(input$BottomPlot_click, {
     if (length(selectedDataBot()) != 0) {
       df <- TiePointData()
-      options( scipen = 7)
       #numeric(0) if click off point
-      df[input$FinalRowNumber,4] <- formatC(selectedDataBot(), format = "e")
+      df[input$FinalRowNumber,4] <- selectedDataBot()
       
       
-      df[input$FinalRowNumber,3] <- formatC(input$CoreBottom, format = "e")
+      df[input$FinalRowNumber,3] <- input$CoreBottom 
       
       
       pathtie <- toString(TieDataFilePath())
-      write.table(x = format(df, format = "e", scientific = TRUE), file = pathtie, sep = " ", col.names = FALSE, row.names = FALSE)
+      write.table(x = df, file = pathtie, sep = " ", col.names = FALSE, row.names = FALSE)
     }
   })
   
@@ -493,18 +491,6 @@ server <- function(input, output) {
     )
   })
   
-  observeEvent(input$FinalCheck, {
-    #Make tie file use scientific notation
-    
-    pathtie <- toString(TieDataFilePath())
-    
-    FinTieToSci <- read.table(pathtie, quote="\"", comment.char="")
-    
-    write.table(x = format(FinTieToSci, format = "e", scientific = TRUE), file = pathtie, sep = " ", col.names = FALSE, row.names = FALSE)
-    
-    
-  })
-  
   
   
   observeEvent(input$myconfirmation, {
@@ -538,23 +524,30 @@ server <- function(input, output) {
   
   
   observeEvent(input$FinalCheck, {
-    #Check if three decimals
-    #Check that Tie points exist in each
-    #Remove empty rows DONE
-    #TieDataFilePath()
-    prior <- TieDataFilePath() 
-    pathtie <- toString(TieDataFilePath())
-    exportTieRemNA <- prior[rowSums(is.na(prior)) != ncol(prior), ]
-    
-    if (identical(prior, exportTieRemNA)==FALSE) { #If any row has an NA value it removes the row assuming it was clicked in error. Can add a second confirmation.
-      showNotification(paste("Empty Rows Removed"), duration = 4)
+    if (length(parseFilePaths(roots, input$files)$datapath)!=0) {
+      
+      #Make tie file use scientific notation
+      
+      pathtie <- toString(TieDataFilePath())
+      
+      FinTieToSci <- read.table(paste(pathtie), quote="\"", comment.char="")
+      FinTieToSci <- as.data.frame(FinTieToSci)
+      exportTieRemNA <- FinTieToSci[rowSums(is.na(FinTieToSci)) != ncol(FinTieToSci), ]
+      
+      if (identical(FinTieToSci, exportTieRemNA)==FALSE) { #If any row has an NA value it removes the row assuming it was clicked in error. Can add a second confirmation.
+        showNotification(paste("Empty Rows Removed"), duration = 4)
+      }
+      FinTieToSci <- exportTieRemNA
+      
+      FinTieToSci <- as.data.frame(lapply(FinTieToSci, sprintf, fmt = "%14.7E"))
+      
+      write.table(x = format(FinTieToSci, format = "e", scientific = TRUE), file = pathtie, sep = " ", col.names = FALSE, row.names = FALSE)
+      print(head(FinTieToSci))
+      print(dim(FinTieToSci))
     }
     
     
-    options(scipen=10)
-    write.table(x = exportTieRemNA, file = pathtie, sep = " ", col.names = FALSE, row.names = FALSE) #Might want to export in scientific notation, ask.
-    #Could have different cores be assigned names then use this final step to transition them to unique numbers (similar to one hot encoding)
-    options(scipen=0)
+
   })
   
   
