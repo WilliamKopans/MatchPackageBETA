@@ -267,12 +267,9 @@ server <- function(input, output) {
         #print("Finding Tie Point Location")
         
         
-        
         #Remove Scientific Notation to check:
         #Revert <- as.data.frame(lapply(lapply(ScientificNotation,as.numeric), format, scientific = F)) #Removes scientific notation
         #Revert <- as.data.frame(lapply(lapply(Revert,as.numeric), sprintf, fmt = "%s")) #Removes trailing zeros
-        
-        
         
         TopOriginal <- StructuredTopData()
         INDEX <- which(colnames(StructuredTopData())==input$dynamicTopX)
@@ -293,6 +290,7 @@ server <- function(input, output) {
         names(TieComp)[2] <- "Shared2"
         TieComp <- tibble::rowid_to_column(TieComp, "ID")
         total <- merge(Main,TieComp, by.x="Shared1", by.y="Shared2")
+        
         
         if (nrow(total)>0) {
           INDEXFin <- which(colnames(total)==input$dynamicTopY)
@@ -320,17 +318,8 @@ server <- function(input, output) {
     if (isTruthy(input$files) == TRUE && isTruthy(input$Bottom$datapath) == TRUE && isTruthy(input$Top$datapath) == TRUE) {
       if (length(parseFilePaths(roots, input$files)$datapath)!=0) { #New tie file import
         
-        BotOriginal <- StructuredBottomData()
+        
         INDEX <- which(colnames(StructuredBottomData())==input$dynamicBottomX)
-        TieData <- TiePointData()[,4]
-        
-        SameBot <- as.data.frame(StructuredBottomData()[,INDEX] %in% TieData) #Check the row of Tie File
-        names(SameBot) <- "Shared"
-        
-        BottomShared <- BotOriginal %>%
-          tibble::add_column(SameBot) %>%
-          dplyr::filter(SameBot == TRUE)
-        
         
         Main <- as.data.frame(StructuredBottomData())
         names(Main)[INDEX] <- "Shared1"
@@ -443,7 +432,7 @@ server <- function(input, output) {
       
       
       pathtie <- toString(TieDataFilePath())
-      write.table(x = df, file = pathtie, sep = " ", col.names = FALSE, row.names = FALSE)
+      write.table(x = df, file = pathtie, sep = " ", col.names = FALSE, row.names = FALSE, quote = FALSE)
       
     }
     
@@ -459,7 +448,7 @@ server <- function(input, output) {
       
       
       pathtie <- toString(TieDataFilePath())
-      write.table(x = df, file = pathtie, sep = " ", col.names = FALSE, row.names = FALSE)
+      write.table(x = df, file = pathtie, sep = " ", col.names = FALSE, row.names = FALSE, quote = FALSE)
     }
   })
   
@@ -476,8 +465,6 @@ server <- function(input, output) {
       if (length(parseFilePaths(roots, input$files)$datapath)!=0) { #New tie file import
         pathtie <- toString(TieDataFilePath())
         read.table(pathtie, sep = "" , header = F,na.strings ="", stringsAsFactors= F)
-        print("Tie Point Data:")
-        print(read.table(pathtie, sep = "" , header = F,na.strings ="", stringsAsFactors= F))
       }
     }
     #read.table(file = pathtie,na.strings ="", stringsAsFactors= F, header = F)
@@ -551,7 +538,7 @@ server <- function(input, output) {
       
       FinTieToSci <- as.data.frame(lapply(FinTieToSci, sprintf, fmt = "%E"))
       
-      write.table(x = format(FinTieToSci, format = "e", scientific = TRUE), file = pathtie, sep = " ", col.names = FALSE, row.names = FALSE)
+      write.table(x = format(FinTieToSci, format = "e", scientific = TRUE), file = pathtie, sep = " ", col.names = FALSE, row.names = FALSE, quote = FALSE)
       print(head(FinTieToSci))
       print(dim(FinTieToSci))
     }
