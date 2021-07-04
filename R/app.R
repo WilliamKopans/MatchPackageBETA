@@ -34,7 +34,31 @@
 
 
 
+###
 
+#' launches the shinyAppDemo app
+#'
+#' @export launchApp
+#'
+#' @return shiny application object
+#'
+#' @example \dontrun {Match::launchApp()}
+#'
+#' @import shiny
+
+
+# wrapper for shiny::shinyApp()
+launchApp <- function() {
+  message('Dev Version 0.01')
+  shiny::shinyApp(ui = ui, server = server)
+}
+
+
+
+###
+  
+  
+  
 
 library(shinyFiles)
 library(data.table)
