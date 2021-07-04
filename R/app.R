@@ -611,9 +611,8 @@ server <- function(input, output) {
   observeEvent(input$tabs, {
     
     if(input$tabs == "Exit Application"){
-      js$closeWindow()
       stopApp()
-    
+      js$closeWindow()
     } 
     
   })
@@ -621,7 +620,3 @@ server <- function(input, output) {
 
 }
 
-
-
-# Create Shiny app ----
-shinyApp(ui, server)
