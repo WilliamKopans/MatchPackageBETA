@@ -49,7 +49,7 @@
 
 # wrapper for shiny::shinyApp()
 launchApp <- function() {
-  message('Dev Version 0.01')
+  message('Dev Version 0.1')
   shiny::shinyApp(ui = ui, server = server)
 }
 
@@ -166,6 +166,8 @@ ui <- fluidPage(theme = shinythemes::shinytheme("spacelab"),
                                     uiOutput("SliderTopY"),
                                     column(3,numericInput("CoreTop", label = ("Core Number"), value = 0)),
                                     plotOutput("FullTopPlot", click = "TopPlot_click"),
+                                    br(),
+                                    br(),
                                     uiOutput("SliderBotX"),
                                     uiOutput("SliderBotY"),
                                     column(3,numericInput("CoreBottom", label = ("Core Number"), value = 1)),
