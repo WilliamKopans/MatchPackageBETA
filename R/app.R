@@ -567,7 +567,7 @@ server <- function(input, output) {
       FinTieToSci <- as.data.frame(lapply(FinTieToSci[,1], sprintf, fmt = "%s"))
       FinTieToSci <- as.data.frame(lapply(FinTieToSci[,3], sprintf, fmt = "%s"))
       
-      write.table(x = format(FinTieToSci, format = "e", scientific = TRUE), file = pathtie, sep = " ", col.names = FALSE, row.names = FALSE, quote = FALSE)
+      write.table(x = FinTieToSci, file = pathtie, sep = " ", col.names = FALSE, row.names = FALSE, quote = FALSE)
       print(head(FinTieToSci))
       print(dim(FinTieToSci))
     }
