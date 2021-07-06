@@ -562,8 +562,10 @@ server <- function(input, output) {
       }
       FinTieToSci <- exportTieRemNA
       
-      FinTieToSci <- as.data.frame(lapply(FinTieToSci, sprintf, fmt = "%g"))
-      FinTieToSci <- as.data.frame(lapply(FinTieToSci, sprintf, fmt = "%s"))
+      FinTieToSci <- as.data.frame(lapply(FinTieToSci[,2], sprintf, fmt = "%g"))
+      FinTieToSci <- as.data.frame(lapply(FinTieToSci[,4], sprintf, fmt = "%g"))
+      FinTieToSci <- as.data.frame(lapply(FinTieToSci[,1], sprintf, fmt = "%s"))
+      FinTieToSci <- as.data.frame(lapply(FinTieToSci[,3], sprintf, fmt = "%s"))
       
       write.table(x = format(FinTieToSci, format = "e", scientific = TRUE), file = pathtie, sep = " ", col.names = FALSE, row.names = FALSE, quote = FALSE)
       print(head(FinTieToSci))
