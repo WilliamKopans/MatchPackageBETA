@@ -562,6 +562,8 @@ server <- function(input, output) {
       }
       FinTieToSci <- exportTieRemNA
       
+      FinTieToSci <- lapply(FinTieToSci, as.integer)
+      
       
       FinTieToSci <- as.data.frame(lapply(FinTieToSci[,2], sprintf, fmt = "%e"))
       FinTieToSci <- as.data.frame(lapply(FinTieToSci[,4], sprintf, fmt = "%e"))
