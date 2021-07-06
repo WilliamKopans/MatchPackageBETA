@@ -562,8 +562,12 @@ server <- function(input, output) {
       }
       FinTieToSci <- exportTieRemNA
       
-      FinTieToSci <- as.data.frame(lapply(FinTieToSci[,2], sprintf, fmt = "%g"))
+      
+      FinTieToSci <- as.data.frame(lapply(FinTieToSci[,2], sprintf, fmt = "%e"))
+      FinTieToSci <- as.data.frame(lapply(FinTieToSci[,4], sprintf, fmt = "%e"))
+      FinTieToSci <- as.data.frame(lapply(FinTieToSci[,2], sprintf, fmt = "%g")) 
       FinTieToSci <- as.data.frame(lapply(FinTieToSci[,4], sprintf, fmt = "%g"))
+      #for some reason, g is not changing the data but it is what Matlab is expecting... (why the %e is first)
       FinTieToSci <- as.data.frame(lapply(FinTieToSci[,1], sprintf, fmt = "%s"))
       FinTieToSci <- as.data.frame(lapply(FinTieToSci[,3], sprintf, fmt = "%s"))
       
