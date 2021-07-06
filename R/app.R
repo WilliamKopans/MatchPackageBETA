@@ -36,7 +36,7 @@
 
 ###
 
-#' launches the shinyAppDemo app
+# launches the shinyAppDemo app
 #'
 #' @export launchApp
 #'
