@@ -553,25 +553,42 @@ server <- function(input, output) {
       
       pathtie <- toString(TieDataFilePath())
       
-      FinTieToSci <- read.table(paste(pathtie), quote="\"", comment.char="")
-      FinTieToSci <- as.data.frame(FinTieToSci)
+      
+      FinTieToSci <- as.data.frame(read.table(paste(pathtie), quote="\"", comment.char=""))
       exportTieRemNA <- FinTieToSci[rowSums(is.na(FinTieToSci)) != ncol(FinTieToSci), ]
+      
+      print("Tie File:")
+      print(FinTieToSci)
       
       if (identical(FinTieToSci, exportTieRemNA)==FALSE) { #If any row has an NA value it removes the row assuming it was clicked in error. Can add a second confirmation.
         showNotification(paste("Empty Rows"), duration = 4)
       }
       FinTieToSci <- exportTieRemNA
       
-      FinTieToSci <- lapply(FinTieToSci, as.integer)
+      FinTieToSci <- as.data.frame(lapply(FinTieToSci, as.numeric))
       
+      ColOne <- as.data.frame(FinTieToSci[,1])
+      ColTwo <- as.data.frame(FinTieToSci[,2])
+      ColThree <- as.data.frame(FinTieToSci[,3])
+      ColFour <-  as.data.frame(FinTieToSci[,4])
       
-      FinTieToSci <- as.data.frame(lapply(FinTieToSci[,2], sprintf, fmt = "%e"))
-      FinTieToSci <- as.data.frame(lapply(FinTieToSci[,4], sprintf, fmt = "%e"))
-      FinTieToSci <- as.data.frame(lapply(FinTieToSci[,2], sprintf, fmt = "%g")) 
-      FinTieToSci <- as.data.frame(lapply(FinTieToSci[,4], sprintf, fmt = "%g"))
-      #for some reason, g is not changing the data but it is what Matlab is expecting... (why the %e is first)
-      FinTieToSci <- as.data.frame(lapply(FinTieToSci[,1], sprintf, fmt = "%s"))
-      FinTieToSci <- as.data.frame(lapply(FinTieToSci[,3], sprintf, fmt = "%s"))
+      print("Tie File pt 2:")
+      print(paste0(FinTieToSci))
+      
+      ColOne <- as.data.frame(lapply(ColTwo, sprintf, fmt = "%e"))
+      print("One Done")
+      print(ColOne)
+      ColTwo <- as.data.frame(lapply(ColTwo, sprintf, fmt = "%e"))
+      print("Two Done")
+      print(ColTwo)
+      #ColThree <- as.data.frame(lapply(ColTwo, sprintf, fmt = "%e"))
+      #print("Three Done")
+      ColFour <- as.data.frame(lapply(ColFour, sprintf, fmt = "%e"))
+      print("Four Done")
+      
+      print("Tie File pt 3:")
+      print(FinTieToSci)
+      
       
       write.table(x = FinTieToSci, file = pathtie, sep = " ", col.names = FALSE, row.names = FALSE, quote = FALSE)
       print(head(FinTieToSci))
