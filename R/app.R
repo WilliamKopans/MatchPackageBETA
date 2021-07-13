@@ -175,10 +175,6 @@ ui <- fluidPage(theme = shinythemes::shinytheme("spacelab"),
                                     
                                     
                            ),
-                           tabPanel("Relative Accumulation Rate or C code",
-                                    h3("This is an extra panel. If the C++ can be integrated, the button to run it can go here."),
-                                    h3("Likely, there will be a button to run the C++ then open a new window depending on how the C++ code is written"),
-                           ),
                            tabPanel("Exit Application")
                 )
 )
