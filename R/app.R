@@ -49,7 +49,7 @@
 
 # wrapper for shiny::shinyApp()
 launchApp <- function() {
-  message('Dev Version 0.1')
+  message('Dev Version 0.4')
   shiny::shinyApp(ui = ui, server = server)
 }
 
@@ -239,7 +239,8 @@ server <- function(input, output) {
     })
   })
   
-  #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+  
+  #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   
   StructuredBottomData <- reactive({
     req(input$Bottom)
@@ -293,9 +294,12 @@ server <- function(input, output) {
         #Revert <- as.data.frame(lapply(lapply(ScientificNotation,as.numeric), format, scientific = F)) #Removes scientific notation
         #Revert <- as.data.frame(lapply(lapply(Revert,as.numeric), sprintf, fmt = "%s")) #Removes trailing zeros
         
+        
         TopOriginal <- StructuredTopData()
         INDEX <- which(colnames(StructuredTopData())==input$dynamicTopX)
+        names(TopOriginal)[INDEX] <- "Shared1"
         TieData <- TiePointData()[,2]
+        names(TieData) <- "Shared2"
         #TieData <-TieData[!is.na(TieData)]
         SameTop <- as.data.frame(StructuredTopData()[,INDEX] %in% TieData) #Check the row of Tie File
         names(SameTop) <- "Shared"
@@ -304,19 +308,34 @@ server <- function(input, output) {
           tibble::add_column(SameTop) %>%
           dplyr::filter(SameTop == TRUE)
         
+        TopShared <- tibble::rowid_to_column(TopShared, "ID")
         
-        Main <- as.data.frame(StructuredTopData())
-        names(Main)[INDEX] <- "Shared1"
-        TieComp <- as.data.frame(TiePointData())
-        TieComp <- format(TieComp, scientific = FALSE)
-        names(TieComp)[2] <- "Shared2"
-        TieComp <- tibble::rowid_to_column(TieComp, "ID")
-        total <- merge(Main,TieComp, by.x="Shared1", by.y="Shared2")
+        
+        
+        total <- TopShared
+        
+        #Main <- as.data.frame(StructuredTopData())
+        #names(Main)[INDEX] <- "Shared1"
+        #TieComp <- as.data.frame(TiePointData())
+        #TieComp <- format(TieComp, scientific = FALSE)
+        #names(TieComp)[2] <- "Shared2"
+        #TieComp <- tibble::rowid_to_column(TieComp, "ID")
+        #total <- merge(Main,TieComp, by.x="Shared1", by.y="Shared2")
+        print("Total:")
+        print(total)
+        
         
         
         if (nrow(total)>0) {
           INDEXFin <- which(colnames(total)==input$dynamicTopY)
           INDEXFinSh <- which(colnames(total)=="Shared1")
+          
+          print("PreGeom")
+          print(total[,INDEXFinSh])
+          print(typeof(total[,INDEXFinSh]))
+          print(total[,INDEXFin])
+          print(typeof(total[,INDEXFin]))
+          
           TopGeom <- list(ggplot2::geom_point(data = total, mapping = ggplot2::aes(x = total[,INDEXFinSh], y = total[,INDEXFin]), color ='dodgerblue', shape = 13, size = 9),
                           ggrepel::geom_label_repel(ggplot2::aes(x = total[,INDEXFinSh], y = total[,INDEXFin], label = total$ID), box.padding   = 0.35,  point.padding = 0.5, segment.color = 'grey50'),
                           ggplot2::geom_point(data = total, mapping = ggplot2::aes(x = total[,INDEXFinSh], y = total[,INDEXFin]), color ='dodgerblue', shape = 18, size = 3.5)
