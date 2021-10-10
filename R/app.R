@@ -92,12 +92,7 @@ ui <- fluidPage(theme = shinythemes::shinytheme("spacelab"),
                                         tags$hr(),
                                         radioButtons("disp", "Display",
                                                      choices = c(Head = "head", All = "all"), selected = "head"),
-                                        #checkboxGroupInput("FinalTopTransformations", "Data Transformations:",
-                                        #                   choiceNames = list(("Zero-Mean"), ("Any Other?")),
-                                        #                   choiceValues = list("ZeroMean", "AnyOther") #https://shiny.rstudio.com/reference/shiny/latest/checkboxGroupInput.html
-                                        #),
                                         
-                                        #~~~~~~~~~~~~~~~
                                         
                                         uiOutput("FinalTopVarX"),
                                         uiOutput("FinalTopVarY"),
@@ -128,12 +123,7 @@ ui <- fluidPage(theme = shinythemes::shinytheme("spacelab"),
                                         tags$hr(),
                                         radioButtons("dispBottom", "Display",
                                                      choices = c(Head = "headBottom", All = "allBottom"), selected = "headBottom"),
-                                        #heckboxGroupInput("FinalBottomTransformations", "Data Transformations:",
-                                        #                  choiceNames = list(("Zero-Mean"), ("Any Other?")),
-                                        #                  choiceValues = list("ZeroMeanBottom", "AnyOther") #https://shiny.rstudio.com/reference/shiny/latest/checkboxGroupInput.html
                                         
-                                        
-                                        #~~~~~~~~~~~~~~~
                                         
                                         uiOutput("FinalBottomVarX"),
                                         uiOutput("FinalBottomVarY"),
@@ -302,11 +292,10 @@ server <- function(input, output) {
         names(TieData) <- "Shared2"
         
         TieData <- tibble::rowid_to_column(TieData, "ID")
-        print("Tie Data")
-        print(TieData)
         
-        TopOriginal<- lapply(TopOriginal, as.numeric)
-        TieData <- lapply(TieData, as.numeric)
+        
+        TopOriginal<- suppressWarnings(lapply(TopOriginal, as.numeric))
+        TieData <- suppressWarnings(lapply(TieData, as.numeric))
 
         total <- merge(TopOriginal,TieData, by.x = "Shared1", by.y = "Shared2")
         
@@ -351,8 +340,8 @@ server <- function(input, output) {
         TieComp <- tibble::rowid_to_column(TieComp, "ID")
         
         #TESTING OCT 10, 2021 START
-        Main <- lapply(Main, as.numeric)
-        TieComp <- lapply(TieComp, as.numeric)
+        Main <- suppressWarnings(lapply(Main, as.numeric))
+        TieComp <- suppressWarnings(lapply(TieComp, as.numeric))
         #TESTING OCT 10, 2021 END
         
         
@@ -588,14 +577,13 @@ server <- function(input, output) {
       ColFour <- as.data.frame(formatC(as.numeric(ColFour[,1]), format = 'e', digits = 7))
       
       
-      print("Tie File pt 3:")
+      
       FinTieToSci <- cbind(ColOne, ColTwo, ColThree, ColFour)
-      print(FinTieToSci)
+      
       
       
       write.table(x = FinTieToSci, file = pathtie, sep = " ", col.names = FALSE, row.names = FALSE, quote = FALSE)
-      print(head(FinTieToSci))
-      print(dim(FinTieToSci))
+      
     }
     
     
