@@ -50,7 +50,7 @@
 
 # wrapper for shiny::shinyApp()
 launchApp <- function() {
-  message('Dev Version 0.6')
+  message('Dev Version 0.7')
   shiny::shinyApp(ui = ui, server = server)
 }
 
@@ -294,47 +294,21 @@ server <- function(input, output) {
         #Revert <- as.data.frame(lapply(lapply(ScientificNotation,as.numeric), format, scientific = F)) #Removes scientific notation
         #Revert <- as.data.frame(lapply(lapply(Revert,as.numeric), sprintf, fmt = "%s")) #Removes trailing zeros
         
-        TopOriginal <- StructuredTopData()
+        TopOriginal <- as.data.frame(StructuredTopData())
         INDEX <- which(colnames(StructuredTopData())==input$dynamicTopX)
         names(TopOriginal)[INDEX] <- "Shared1"
         TieData <- as.data.frame(TiePointData()[,2])
+        TieData <- format(TieData, scientific = FALSE)
         names(TieData) <- "Shared2"
         
         TieData <- tibble::rowid_to_column(TieData, "ID")
         print("Tie Data")
         print(TieData)
         
-        
-        TopOriginal <- TopOriginal[order(TopOriginal$Shared1),]
-        
-        SameTop <- as.data.frame(TopOriginal$Shared1 %in% TieData$Shared2) #Check the row of Tie File
-        #names(SameTop) <- "Shared"
+        TopOriginal<- lapply(TopOriginal, as.numeric)
+        TieData <- lapply(TieData, as.numeric)
 
-                print("Checkpoint 1")
-        
-        SortTieData <- TieData[order(TieData$Shared2),]
-                print("Checkpoint 2")
-                print(SortTieData)
-        
-        TopShared <- TopOriginal %>%
-          tibble::add_column(SameTop) %>%
-          dplyr::filter(SameTop == TRUE)
-        
-        TopShared <- merge(TopShared,TieData, by.x="Shared1", by.y="ID")
-        
-        total <- TopShared
-        
-        #Main <- as.data.frame(StructuredTopData())
-        #names(Main)[INDEX] <- "Shared1"
-        #TieComp <- as.data.frame(TiePointData())
-        #TieComp <- format(TieComp, scientific = FALSE)
-        #names(TieComp)[2] <- "Shared2"
-        #TieComp <- tibble::rowid_to_column(TieComp, "ID")
-        #total <- merge(Main,TieComp, by.x="Shared1", by.y="Shared2")
-        
-        
-        print("Total:")
-        print(total)
+        total <- merge(TopOriginal,TieData, by.x = "Shared1", by.y = "Shared2")
         
         
         
