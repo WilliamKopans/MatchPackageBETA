@@ -289,12 +289,10 @@ server <- function(input, output) {
     if (isTruthy(input$files) == TRUE && isTruthy(input$Bottom$datapath) == TRUE && isTruthy(input$Top$datapath) == TRUE) {
       if (length(shinyFiles::parseFilePaths(roots, input$files)$datapath)!=0) { #New tie file import
         #print("Finding Tie Point Location")
-        
-        
+
         #Remove Scientific Notation to check:
         #Revert <- as.data.frame(lapply(lapply(ScientificNotation,as.numeric), format, scientific = F)) #Removes scientific notation
         #Revert <- as.data.frame(lapply(lapply(Revert,as.numeric), sprintf, fmt = "%s")) #Removes trailing zeros
-        
         
         TopOriginal <- StructuredTopData()
         INDEX <- which(colnames(StructuredTopData())==input$dynamicTopX)
@@ -307,34 +305,20 @@ server <- function(input, output) {
         print(TieData)
         
         
-        
-        
         TopOriginal <- TopOriginal[order(TopOriginal$Shared1),]
-        
-        print("Checkpoint 0")
-        print(TopOriginal)
-        
         
         SameTop <- as.data.frame(TopOriginal$Shared1 %in% TieData$Shared2) #Check the row of Tie File
         #names(SameTop) <- "Shared"
 
-        print("Same Top")
-        print(SameTop)
-        
                 print("Checkpoint 1")
         
         SortTieData <- TieData[order(TieData$Shared2),]
                 print("Checkpoint 2")
                 print(SortTieData)
         
-        
-        
-        
         TopShared <- TopOriginal %>%
           tibble::add_column(SameTop) %>%
           dplyr::filter(SameTop == TRUE)
-        
-        
         
         TopShared <- merge(TopShared,TieData, by.x="Shared1", by.y="ID")
         
@@ -396,6 +380,13 @@ server <- function(input, output) {
         TieComp <- format(TieComp, scientific = FALSE)
         names(TieComp)[4] <- "Shared2"
         TieComp <- tibble::rowid_to_column(TieComp, "ID")
+        
+        #TESTING OCT 10, 2021 START
+        Main <- lapply(Main, as.numeric)
+        TieComp <- lapply(TieComp, as.numeric)
+        #TESTING OCT 10, 2021 END
+        
+        
         total <- merge(Main,TieComp, by.x="Shared1", by.y="Shared2")
         
         
@@ -404,7 +395,8 @@ server <- function(input, output) {
           INDEXFinSh <- which(colnames(total)=="Shared1")
           BottomGeom <- list(ggplot2::geom_point(data = total, mapping = ggplot2::aes(x = total[,INDEXFinSh], y = total[,INDEXFin]), color ='dodgerblue', shape = 13, size = 9),
                              ggrepel::geom_label_repel(ggplot2::aes(x = total[,INDEXFinSh], y = total[,INDEXFin], label = total$ID), box.padding   = 0.35,  point.padding = 0.5, segment.color = 'grey50'),
-                             ggplot2::geom_point(data = total, mapping = ggplot2::aes(x = total[,INDEXFinSh], y = total[,INDEXFin]), color ='dodgerblue', shape = 18, size = 3.5)
+                             ggplot2::geom_point(data = total, mapping = ggplot2::aes(x = total[,INDEXFinSh], y = total[,INDEXFin]), color ='dodgerblue', shape = 18, size = 3.5),
+                             geom_vline(xintercept = TieComp$Shared1, lty = 4)
           )
           
           return(BottomGeom)
