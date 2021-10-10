@@ -1,3 +1,4 @@
+#Edited October 10th, 2021
 #library(ggplot2, warn.conflicts = FALSE) #The conflicts that I am turning off are those which occur when libraries share function names
 #library(dplyr, warn.conflicts = FALSE) #For more information, check: https://stackoverflow.com/questions/39137110/what-does-the-following-object-is-masked-from-packagexxx-mean
 #library(shiny, warn.conflicts = FALSE)
@@ -49,7 +50,7 @@
 
 # wrapper for shiny::shinyApp()
 launchApp <- function() {
-  message('Dev Version 0.4')
+  message('Dev Version 0.5')
   shiny::shinyApp(ui = ui, server = server)
 }
 
@@ -298,19 +299,44 @@ server <- function(input, output) {
         TopOriginal <- StructuredTopData()
         INDEX <- which(colnames(StructuredTopData())==input$dynamicTopX)
         names(TopOriginal)[INDEX] <- "Shared1"
-        TieData <- TiePointData()[,2]
+        TieData <- as.data.frame(TiePointData()[,2])
         names(TieData) <- "Shared2"
-        #TieData <-TieData[!is.na(TieData)]
-        SameTop <- as.data.frame(StructuredTopData()[,INDEX] %in% TieData) #Check the row of Tie File
-        names(SameTop) <- "Shared"
+        
+        TieData <- tibble::rowid_to_column(TieData, "ID")
+        print("Tie Data")
+        print(TieData)
+        
+        
+        
+        
+        TopOriginal <- TopOriginal[order(TopOriginal$Shared1),]
+        
+        print("Checkpoint 0")
+        print(TopOriginal)
+        
+        
+        SameTop <- as.data.frame(TopOriginal$Shared1 %in% TieData$Shared2) #Check the row of Tie File
+        #names(SameTop) <- "Shared"
+
+        print("Same Top")
+        print(SameTop)
+        
+                print("Checkpoint 1")
+        
+        SortTieData <- TieData[order(TieData$Shared2),]
+                print("Checkpoint 2")
+                print(SortTieData)
+        
+        
+        
         
         TopShared <- TopOriginal %>%
           tibble::add_column(SameTop) %>%
           dplyr::filter(SameTop == TRUE)
         
-        TopShared <- tibble::rowid_to_column(TopShared, "ID")
         
         
+        TopShared <- merge(TopShared,TieData, by.x="Shared1", by.y="ID")
         
         total <- TopShared
         
@@ -321,6 +347,8 @@ server <- function(input, output) {
         #names(TieComp)[2] <- "Shared2"
         #TieComp <- tibble::rowid_to_column(TieComp, "ID")
         #total <- merge(Main,TieComp, by.x="Shared1", by.y="Shared2")
+        
+        
         print("Total:")
         print(total)
         
