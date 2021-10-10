@@ -50,7 +50,7 @@
 
 # wrapper for shiny::shinyApp()
 launchApp <- function() {
-  message('Dev Version 0.7')
+  message('Dev Version 1.0')
   shiny::shinyApp(ui = ui, server = server)
 }
 
@@ -316,11 +316,6 @@ server <- function(input, output) {
           INDEXFin <- which(colnames(total)==input$dynamicTopY)
           INDEXFinSh <- which(colnames(total)=="Shared1")
           
-          print("PreGeom")
-          print(total[,INDEXFinSh])
-          print(typeof(total[,INDEXFinSh]))
-          print(total[,INDEXFin])
-          print(typeof(total[,INDEXFin]))
           
           TopGeom <- list(ggplot2::geom_point(data = total, mapping = ggplot2::aes(x = total[,INDEXFinSh], y = total[,INDEXFin]), color ='dodgerblue', shape = 13, size = 9),
                           ggrepel::geom_label_repel(ggplot2::aes(x = total[,INDEXFinSh], y = total[,INDEXFin], label = total$ID), box.padding   = 0.35,  point.padding = 0.5, segment.color = 'grey50'),
@@ -532,13 +527,13 @@ server <- function(input, output) {
       df <- TiePointData()
       #df[input$FinalRowNumber,2] <- 555 #Double check this line
       
-      print(df[input$FinalRowNumber,])
+      
       df[input$FinalRowNumber,1] <- NA
       df[input$FinalRowNumber,2] <- NA
       df[input$FinalRowNumber,3] <- NA
       df[input$FinalRowNumber,4] <- NA
       
-      print(df[input$FinalRowNumber,])
+      
       pathtie <- toString(TieDataFilePath())
       write.table(x = df, file = pathtie, sep = " ", col.names = FALSE, row.names = FALSE)
       
@@ -566,8 +561,6 @@ server <- function(input, output) {
       FinTieToSci <- as.data.frame(read.table(paste(pathtie), quote="\"", comment.char=""))
       exportTieRemNA <- FinTieToSci[rowSums(is.na(FinTieToSci)) != ncol(FinTieToSci), ]
       
-      print("Tie File:")
-      print(FinTieToSci)
       
       if (identical(FinTieToSci, exportTieRemNA)==FALSE) { #If any row has an NA value it removes the row assuming it was clicked in error. Can add a second confirmation.
         showNotification(paste("Empty Rows"), duration = 4)
@@ -581,25 +574,19 @@ server <- function(input, output) {
       ColThree <- as.data.frame(FinTieToSci[,3])
       ColFour <-  as.data.frame(FinTieToSci[,4])
       
-      print("Tie File pt 2:")
-      print(paste0(FinTieToSci))
       
       #ColOne <- as.data.frame(lapply(ColOne, sprintf, fmt = "%e"))
       ColOne <- as.data.frame(formatC(as.numeric(ColOne[,1]), format = 'e', digits = 7))
-      print("One Done")
-      print(ColOne)
+      
       #ColTwo <- as.data.frame(lapply(ColTwo, sprintf, fmt = "%e"))
       ColTwo <- as.data.frame(formatC(as.numeric(ColTwo[,1]), format = 'e', digits = 7))
-      print("Two Done")
-      print(ColTwo)
+      
       #ColThree <- as.data.frame(lapply(ColThree, sprintf, fmt = "%e"))
       ColThree <- as.data.frame(formatC(as.numeric(ColThree[,1]), format = 'e', digits = 7))
-      print("Three Done")
-      print(ColThree)
+      
       #ColFour <- as.data.frame(lapply(ColFour, sprintf, fmt = "%e"))
       ColFour <- as.data.frame(formatC(as.numeric(ColFour[,1]), format = 'e', digits = 7))
-      print("Four Done")
-      print(ColFour)
+      
       
       print("Tie File pt 3:")
       FinTieToSci <- cbind(ColOne, ColTwo, ColThree, ColFour)
