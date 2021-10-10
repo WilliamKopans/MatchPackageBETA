@@ -25,3 +25,5 @@ Match::launchApp()
 
 
 Credit to https://github.com/MangoTheCat/shinyAppDemo for the boilerplate R Package code.
+
+Executable "Getting Started" Jupyter Notebook available [HERE](https://github.com/WilliamKopans/MatchPackageBETA/blob/main/Match%20App%20Getting%20Started.ipynb).
