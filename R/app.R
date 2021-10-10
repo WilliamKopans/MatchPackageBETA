@@ -50,7 +50,7 @@
 
 # wrapper for shiny::shinyApp()
 launchApp <- function() {
-  message('Dev Version 0.51')
+  message('Dev Version 0.6')
   shiny::shinyApp(ui = ui, server = server)
 }
 
