@@ -50,7 +50,7 @@
 
 # wrapper for shiny::shinyApp()
 launchApp <- function() {
-  message('Dev Version 0.5')
+  message('Dev Version 0.51')
   shiny::shinyApp(ui = ui, server = server)
 }
 
@@ -396,7 +396,7 @@ server <- function(input, output) {
           BottomGeom <- list(ggplot2::geom_point(data = total, mapping = ggplot2::aes(x = total[,INDEXFinSh], y = total[,INDEXFin]), color ='dodgerblue', shape = 13, size = 9),
                              ggrepel::geom_label_repel(ggplot2::aes(x = total[,INDEXFinSh], y = total[,INDEXFin], label = total$ID), box.padding   = 0.35,  point.padding = 0.5, segment.color = 'grey50'),
                              ggplot2::geom_point(data = total, mapping = ggplot2::aes(x = total[,INDEXFinSh], y = total[,INDEXFin]), color ='dodgerblue', shape = 18, size = 3.5),
-                             geom_vline(xintercept = TieComp$Shared2, lty = 4)
+                             ggplot2::geom_vline(xintercept = TieComp$Shared2, lty = 4)
           )
           
           return(BottomGeom)
