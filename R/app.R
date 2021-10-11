@@ -15,7 +15,7 @@
 #library(ggrepel, warn.conflicts = FALSE)
 #library(shinythemes, warn.conflicts = FALSE)
 #library(shinyWidgets, warn.conflicts = FALSE)
-                      #   **Main App File**
+#                            **Main App File**
 #' @import ggrepel
 #' @import rio
 #' @import astrochron
@@ -56,7 +56,7 @@ launchApp <- function() {
 
 
 
-###
+
   
   
   
@@ -183,9 +183,9 @@ server <- function(input, output) {
         stop(safeError(e))})
     if("ZeroMean" %in% input$FinalTopTransformations){
       dfTop <- stats::predict(preProcess(dfTop, method=c("center", "scale")), dfTop) #Zero-Meaned data
-      #INDEX <- which(colnames(dfTop)==input$dynamicTopY)
+      
       #dfTop[, INDEX] <- predict(preProcess(as.data.frame(dfTop[, INDEX])), as.data.frame(dfTop[, INDEX])) #Zero-Meaned data
-      #print(summary(dfTop))
+      
       return(dfTop)
     } else {return(dfTop)}
     
@@ -278,11 +278,6 @@ server <- function(input, output) {
     
     if (isTruthy(input$files) == TRUE && isTruthy(input$Bottom$datapath) == TRUE && isTruthy(input$Top$datapath) == TRUE) {
       if (length(shinyFiles::parseFilePaths(roots, input$files)$datapath)!=0) { #New tie file import
-        #print("Finding Tie Point Location")
-
-        #Remove Scientific Notation to check:
-        #Revert <- as.data.frame(lapply(lapply(ScientificNotation,as.numeric), format, scientific = F)) #Removes scientific notation
-        #Revert <- as.data.frame(lapply(lapply(Revert,as.numeric), sprintf, fmt = "%s")) #Removes trailing zeros
         
         TopOriginal <- as.data.frame(StructuredTopData())
         INDEX <- which(colnames(StructuredTopData())==input$dynamicTopX)
@@ -339,10 +334,10 @@ server <- function(input, output) {
         names(TieComp)[4] <- "Shared2"
         TieComp <- tibble::rowid_to_column(TieComp, "ID")
         
-        #TESTING OCT 10, 2021 START
+        
         Main <- suppressWarnings(lapply(Main, as.numeric))
         TieComp <- suppressWarnings(lapply(TieComp, as.numeric))
-        #TESTING OCT 10, 2021 END
+        
         
         
         total <- merge(Main,TieComp, by.x="Shared1", by.y="Shared2")
@@ -476,7 +471,7 @@ server <- function(input, output) {
   
   TiePointData <- reactive({
     req(input$files)
-    #invalidateLater(5000)
+    
     React <- selectedDataTop()
     React <- selectedDataBot()
     if (isTruthy(input$files) == TRUE && isTruthy(input$Bottom$datapath) == TRUE && isTruthy(input$Top$datapath) == TRUE) {
@@ -486,7 +481,7 @@ server <- function(input, output) {
         read.table(pathtie, sep = "" , header = F,na.strings ="", stringsAsFactors= F)
       }
     }
-    #read.table(file = pathtie,na.strings ="", stringsAsFactors= F, header = F)
+  
     
   })
   #~~~
@@ -514,7 +509,7 @@ server <- function(input, output) {
       showNotification(paste("Point(s) will disapear after next plot action"), duration = 7, type = "message")
       
       df <- TiePointData()
-      #df[input$FinalRowNumber,2] <- 555 #Double check this line
+    
       
       
       df[input$FinalRowNumber,1] <- NA
@@ -531,10 +526,9 @@ server <- function(input, output) {
         return(TieP)
       })
       
-      print("Yes!")
+    
     } else {
       #false
-      print("No!")
     }
   }, ignoreNULL = TRUE)
   
@@ -564,23 +558,15 @@ server <- function(input, output) {
       ColFour <-  as.data.frame(FinTieToSci[,4])
       
       
-      #ColOne <- as.data.frame(lapply(ColOne, sprintf, fmt = "%e"))
       ColOne <- as.data.frame(formatC(as.numeric(ColOne[,1]), format = 'e', digits = 7))
-      
-      #ColTwo <- as.data.frame(lapply(ColTwo, sprintf, fmt = "%e"))
+    
       ColTwo <- as.data.frame(formatC(as.numeric(ColTwo[,1]), format = 'e', digits = 7))
-      
-      #ColThree <- as.data.frame(lapply(ColThree, sprintf, fmt = "%e"))
+    
       ColThree <- as.data.frame(formatC(as.numeric(ColThree[,1]), format = 'e', digits = 7))
-      
-      #ColFour <- as.data.frame(lapply(ColFour, sprintf, fmt = "%e"))
+    
       ColFour <- as.data.frame(formatC(as.numeric(ColFour[,1]), format = 'e', digits = 7))
       
-      
-      
       FinTieToSci <- cbind(ColOne, ColTwo, ColThree, ColFour)
-      
-      
       
       write.table(x = FinTieToSci, file = pathtie, sep = " ", col.names = FALSE, row.names = FALSE, quote = FALSE)
       
@@ -630,8 +616,8 @@ server <- function(input, output) {
   observeEvent(input$tabs, {
     
     if(input$tabs == "Exit Application"){
-      stopApp()
       js$closeWindow()
+      stopApp()
     } 
     
   })
