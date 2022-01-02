@@ -14,7 +14,9 @@ source("https://install-github.me/WilliamKopans/MatchPackageBETA")
 
 ...or...
 
-Click [HERE](https://github.com/WilliamKopans/MatchPackageBETA/blob/main/Match_1.0.0.tgz?raw=true) to download the binary package.
+Click [HERE](https://github.com/WilliamKopans/MatchPackageBETA/blob/main/Match_1.0.0.tgz?raw=true) to download the binary package. Then type into R: 
+
+install.packages("Path to downloaded file")
 
 ## Run the Shiny app
 
