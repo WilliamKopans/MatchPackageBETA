@@ -13,7 +13,7 @@ Before launching the application please:
     
     
 
-## There are two ways to install, either with or without Git. Both will work, but I suggest opting for the second method if you do not have experience with Git.
+## There are two ways to install the application, either with or without Git. Both will work, but I suggest opting for the second method if you do not have experience with Git.
 
 
 ## To Install with Git:
