@@ -11,7 +11,7 @@ Before launching the application please:
 - If using a Mac, Install [XQuartz](https://www.xquartz.org/) ( [Tutorial](https://youtu.be/020jEnon8FA?t=175) ).
     
     
-- Download [this file](https://drive.google.com/file/d/1UBYbJjXV85MJSmrg9lHh00LHEZjIvLMK/view?usp=sharing) (top right is download button) and open R or RStudio to run the file. To run the file, select all then press command and return. Exact keybindings may change by operating system. Try control instead of command on a PC.
+- Download [this file](https://drive.google.com/file/d/1UBYbJjXV85MJSmrg9lHh00LHEZjIvLMK/view?usp=sharing) (top right is download button) and double click the file to open in R or RStudio. Then, run the file. To run the file, select all then press command and return. Exact keybindings may change by operating system. Try control instead of command on a PC.
     - A lot of packages should start to download and this may take a few minutes. Each package is a matter of kilobytes, so although it looks like a lot, you are downloading the equivilent of one or two smartphone photos.
     
     
