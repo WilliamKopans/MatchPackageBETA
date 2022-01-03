@@ -18,8 +18,10 @@ Before launching the application please:
 ## To Install with Git:
 Note: This may take a significant amount of time (1-5 minutes)
 
-install.packages("devtools")
-devtools::install_github("WilliamKopans/MatchPackageBETA",upgrade = c("always"), force = TRUE, quiet = TRUE)
+`install.packages("devtools")`
+
+`devtools::install_github("WilliamKopans/MatchPackageBETA",upgrade = c("always"), force = TRUE, quiet = TRUE)`
+
 
 If you regularly use the vertion control system Git and encounter the error:
 > Error: Failed to install 'unknown package' from GitHub:
