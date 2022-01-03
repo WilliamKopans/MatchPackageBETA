@@ -3,7 +3,7 @@
 #First checking that all of the other packages are installed.
 
 PackagesToCheck <- list("ggplot2","ggrepel", "rio", "astrochron", "ggiraph", "systemfonts",
-                        "shinyjs", "caret", "shinyFiles", "stringr", "data.table", 
+                        "shinyjs", "caret", "shinyFiles", "stringr", "data.table", "devtools",
                         "tibble", "shinythemes", "shinyWidgets", "stats", "utils", "dplyr", 
                         "ggplot2", "shiny", "plotly", "shinyFiles")
 
