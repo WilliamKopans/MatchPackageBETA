@@ -2,6 +2,7 @@
 
 Before launching the application please:
 
+<sup>Note:   Both installations are fairly self explanatory through their websites, but tutorials are added if you run into any questions.</sup>
 
 - Download [R](https://cran.r-project.org/mirrors.html)  ( [Tutorial](https://youtu.be/cX532N_XLIs) )
     - CRAN Mirror location does not matter as long as you choose a location in the USA. All should be equally fast.
@@ -34,7 +35,7 @@ Then run: ``Sys.unsetenv("GITHUB_PAT")``
 
 Click [HERE](https://github.com/WilliamKopans/MatchPackageBETA/blob/main/Match_1.0.0.tgz?raw=true) to download the binary package. Then locate the file (usually in your downloads folder) and copy the pathname. To find the pathname easily on a Mac, right click the file and hold option. This should make a button show up saying: `Copy "Match_1.0.0.tgz" as Pathname`
 
-Once you have the pathname coppied, go to R or RStudio. Type: `install.packages("Path to downloaded file")`, putting the pathname within the quotes and click enter.
+Once you have the pathname coppied, go to R or RStudio. In the console window, type: `install.packages("Path to downloaded file")`, putting the pathname within the quotes and click enter.
 
 # Once the package is downloaded:
 ### To launch the application run:
