@@ -16,7 +16,7 @@ Before launching the application please:
 
 
 ## To Install with Git:
-Note: This may take a significant amount of time (1-5 minutes)
+Note: This may take a few minutes (1-5 minutes)
 
 `install.packages("devtools")`
 
