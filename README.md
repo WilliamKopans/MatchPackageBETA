@@ -4,7 +4,7 @@ Before launching the application please:
 
 
 - Download [R](https://cran.r-project.org/mirrors.html)  ( [Tutorial](https://youtu.be/cX532N_XLIs) )
-
+    - CRAN Mirror location does not matter as long as you choose a location in the USA. All should be equally fast.
     
     
 - If using a Mac; Install [XQuartz](https://www.xquartz.org/) ( [Tutorial](https://youtu.be/020jEnon8FA?t=175) )
