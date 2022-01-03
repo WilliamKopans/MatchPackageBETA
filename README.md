@@ -37,9 +37,9 @@ Then run: ``Sys.unsetenv("GITHUB_PAT")``
 
 ## To install without Git:
 
-Click [HERE](https://github.com/WilliamKopans/MatchPackageBETA/blob/main/Match_1.0.0.tgz?raw=true) to download the binary package. Next, locate the file (usually in your downloads folder) and copy the pathname. To find the pathname easily on a Mac, right click the file and hold option. This should make a button show up saying: `Copy "Match_1.0.0.tgz" as Pathname`
+Click [HERE](https://github.com/WilliamKopans/MatchPackageBETA/blob/main/Match_1.0.1.tgz?raw=true) to download the binary package. Next, locate the file (usually in your downloads folder) and copy the pathname. To find the pathname easily on a Mac, right click the file and hold option. This should make a button show up saying: `Copy "Match_1.0.1.tgz" as Pathname`
 
-Once you have the pathname coppied, go to R or RStudio. In the console window, type: `install.packages("Path to downloaded file",repos = NULL)`, putting the pathname within the quotes and click enter. It should look something like this: `install.packages("/Users/williamkopans/Downloads/Match_1.0.0.tgz",repos = NULL)`.
+Once you have the pathname coppied, go to R or RStudio. In the console window, type: `install.packages("Path to downloaded file",repos = NULL)`, putting the pathname within the quotes and click enter. It should look something like this: `install.packages("/Users/williamkopans/Downloads/Match_1.0.1.tgz",repos = NULL)`.
 
 # Once the package is downloaded:
 ### To launch the application run:
