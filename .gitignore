@@ -77,3 +77,6 @@ MatchPackage.Rproj
 .Rproj.user/7F438FEE/sources/s-66174CE8/314B3489-contents
 .Rproj.user/7F438FEE/sources/s-66174CE8/53F315EC-contents
 .Rproj.user/7F438FEE/sources/s-66174CE8/F8B7FF28-contents
+.Rproj.user
+.DS_Store
+.Rbuildignore

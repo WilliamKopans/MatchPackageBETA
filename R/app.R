@@ -70,12 +70,17 @@ launchApp <- function() {
   
   
 
-library(shinyFiles)
-library(data.table)
-library(shinythemes)
-library(shinyjs)
-library(dplyr) 
-library(tibble)
+PackagesToCheck <- list("ggplot2","ggrepel", "rio", "astrochron", "ggiraph", "systemfonts",
+                        "shinyjs", "caret", "shinyFiles", "stringr", "data.table", "devtools",
+                        "tibble", "shinythemes", "shinyWidgets", "stats", "utils", "dplyr", 
+                        "ggplot2", "shiny", "plotly", "shinyFiles")
+
+for (i in PackagesToCheck) {
+  print(paste0(i, ": ", i %in% rownames(installed.packages())))
+  if (i %in% rownames(installed.packages()) == FALSE) {
+    install.packages(i)
+  }
+}
 
 #library(ggrepel, rio, astrochron, ggiraph, shinyjs, caret, shinyFiles, stringr, data.table, tibble, ggrepel, shinythemes, shinyWidgets, stats, utils)
 
