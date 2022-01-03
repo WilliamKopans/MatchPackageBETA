@@ -8,8 +8,11 @@ Before launching the application please:
     - CRAN Mirror location does not matter as long as you choose a location in the USA. All should be equally fast.
     - The tutorial shows how to install RStudio, but to run the application you do not need RStudio.
     
-- If using a Mac; Install [XQuartz](https://www.xquartz.org/) ( [Tutorial](https://youtu.be/020jEnon8FA?t=175) )
+- If using a Mac, Install [XQuartz](https://www.xquartz.org/) ( [Tutorial](https://youtu.be/020jEnon8FA?t=175) ).
     
+    
+- Download [this file](https://github.com/WilliamKopans/MatchPackageBETA/blob/main/PackageCheck.R) and open R or RStudio to run the file. To run the file, select all then press command and return. Exact keybindings may change by operating system. Try control instead of command on a PC.
+    - A lot of packages should start to download and this may take a few minutes. Each package is a matter of kilobytes, so although it looks like a lot, you are downloading the equivilent of one or two smartphone photos or screenshots.
     
     
 
