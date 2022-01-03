@@ -13,6 +13,7 @@ Before launching the application please:
     
 - Download [this file](https://drive.google.com/file/d/1UBYbJjXV85MJSmrg9lHh00LHEZjIvLMK/view?usp=sharing) (top right is download button) and double click the file to open in R or RStudio. Then, run the file. To run the file, select all then press command and return. Exact keybindings may change by operating system. Try control instead of command on a PC.
     - A lot of packages should start to download and this may take a few minutes. Each package is a matter of kilobytes, so although it looks like a lot, you are downloading the equivilent of one or two smartphone photos.
+    - If you get the message `Do you want to install from sources the package which needs compilation?`, just type Yes and click enter/return.
     
     
 
