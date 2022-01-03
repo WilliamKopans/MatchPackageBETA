@@ -3,11 +3,11 @@
 Before launching the application please:
 
 
-- Download R  ( [Tutorial](https://youtu.be/cX532N_XLIs) )
+- Download [R](https://cran.r-project.org/mirrors.html)  ( [Tutorial](https://youtu.be/cX532N_XLIs) )
 
     
     
-- If using a Mac; Install XQuartz ( [Tutorial](https://youtu.be/020jEnon8FA?t=175) )
+- If using a Mac; Install [XQuartz](https://www.xquartz.org/) ( [Tutorial](https://youtu.be/020jEnon8FA?t=175) )
     
     
     
