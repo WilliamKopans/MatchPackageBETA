@@ -33,6 +33,14 @@
 #' @import utils
 #' @import dplyr
 #' @import systemfonts
+#' @name launchApp
+#' @title launchApp
+#' @usage Match::launchApp()
+#' @return Launches Shiny application
+#' @note Does not accept any arguments.
+
+
+
 
 
 
@@ -51,7 +59,7 @@
 
 # wrapper for shiny::shinyApp()
 launchApp <- function() {
-  message('Dev Version 1.0')
+  message('Dev Version 1.0.1')
   shiny::shinyApp(ui = ui, server = server)
 }
 
