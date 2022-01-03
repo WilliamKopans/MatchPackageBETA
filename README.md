@@ -12,7 +12,7 @@ Before launching the application please:
     
     
 - Download [this file](https://github.com/WilliamKopans/MatchPackageBETA/blob/main/PackageCheck.R) and open R or RStudio to run the file. To run the file, select all then press command and return. Exact keybindings may change by operating system. Try control instead of command on a PC.
-    - A lot of packages should start to download and this may take a few minutes. Each package is a matter of kilobytes, so although it looks like a lot, you are downloading the equivilent of one or two smartphone photos or screenshots.
+    - A lot of packages should start to download and this may take a few minutes. Each package is a matter of kilobytes, so although it looks like a lot, you are downloading the equivilent of one or two smartphone photos.
     
     
 
