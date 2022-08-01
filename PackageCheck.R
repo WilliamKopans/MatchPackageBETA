@@ -8,7 +8,7 @@ PackagesToCheck <- list("ggplot2","ggrepel", "rio", "astrochron", "ggiraph", "sy
                         "ggplot2", "shiny", "plotly", "shinyFiles")
 
 for (i in PackagesToCheck) {
-  print(paste0(i, ": ", i %in% rownames(installed.packages())))
+  message(paste0(i, ": ", i %in% rownames(installed.packages())))
   if (i %in% rownames(installed.packages()) == FALSE) {
     install.packages(i)
   }

@@ -77,11 +77,12 @@ PackagesToCheck <- list("ggplot2","ggrepel", "rio", "astrochron", "ggiraph", "sy
                         "ggplot2", "shiny", "plotly", "shinyFiles")
 
 for (i in PackagesToCheck) {
-  print(paste0(i, ": ", i %in% rownames(installed.packages())))
+  message(paste0(i, ": ", i %in% rownames(installed.packages())))
   if (i %in% rownames(installed.packages()) == FALSE) {
     install.packages(i)
   }
 }
+
 
 #library(ggrepel, rio, astrochron, ggiraph, shinyjs, caret, shinyFiles, stringr, data.table, tibble, ggrepel, shinythemes, shinyWidgets, stats, utils)
 
@@ -154,7 +155,7 @@ ui <- fluidPage(theme = shinythemes::shinytheme("spacelab"),
                            tabPanel("Graphs",
                                     h3("Graphs"),
                                     fluidRow(
-                                      column(6,numericInput("FinalRowNumber", label = h3("Tie Point Number"), value = 1)),
+                                      column(6,numericInput("FinalRowNumber", label = h3("Tie Point Number"), value = 1, step = 0.5)),
                                       downloadButton("downloadEmptyData", "Download New Tie File"),
                                       #column(6, fileInput("TiePointFile", label = "Upload Tie Point File", multiple = FALSE, accept = c(".tie")),) #Old Tie upload
                                       shinyFilesButton('files', 'File select', 'Please select a file', FALSE), #New Tie file import
@@ -168,14 +169,38 @@ ui <- fluidPage(theme = shinythemes::shinytheme("spacelab"),
                                       inputId = "FinalCheck",
                                       label = "Finalize Tie File"
                                     ),
-                                    uiOutput("SliderTopX"),
-                                    uiOutput("SliderTopY"),
+                                    br(),
+                                    shinyWidgets::dropdownButton(
+                                      inputId = "TopDropdownSettings",
+                                      label = "Graph Controls",
+                                      icon = icon("sliders"),
+                                      status = "primary",
+                                      circle = FALSE,
+                                      size = "default",
+                                      width = "90%",
+                                      uiOutput("SliderTopX"),
+                                      uiOutput("SliderTopY")),
+                                      
+                                    br(),
+                                    
                                     column(3,numericInput("CoreTop", label = ("Core Number"), value = 0)),
                                     plotOutput("FullTopPlot", click = "TopPlot_click"),
                                     br(),
                                     br(),
+                                    br(),
+                                    br(),
+                                    br(),
+                                    shinyWidgets::dropdownButton(
+                                      inputId = "TopDropdownSettings",
+                                      label = "Graph Controls",
+                                      icon = icon("sliders"),
+                                      status = "primary",
+                                      circle = FALSE,
+                                      size = "default",
+                                      width = "90%",
                                     uiOutput("SliderBotX"),
-                                    uiOutput("SliderBotY"),
+                                    uiOutput("SliderBotY")),
+                                    
                                     column(3,numericInput("CoreBottom", label = ("Core Number"), value = 1)),
                                     plotOutput("FullBottomPlot", click = "BottomPlot_click"),
                                     
@@ -442,11 +467,14 @@ server <- function(input, output) {
                                 min = min(StructuredTopData()[[input$dynamicTopX]]), max = max(StructuredTopData()[[input$dynamicTopX]]),
                                 value = c(min(StructuredTopData()[[input$dynamicTopX]]), max(StructuredTopData()[[input$dynamicTopX]])), width = '90%')
     })
+    
     output$SliderTopY <- renderUI({
       SliderTopY <- sliderInput("YRangeTop", "Y Range Top Plot:",
                                 min = min(StructuredTopData()[[input$dynamicTopY]]), max = max(StructuredTopData()[[input$dynamicTopY]]),
                                 value = c(min(StructuredTopData()[[input$dynamicTopY]]), max(StructuredTopData()[[input$dynamicTopY]])), width = '90%')
     })
+    
+    
   })
   
   
@@ -620,7 +648,9 @@ server <- function(input, output) {
     },
     content = function(file) {
       write.table(Empty, file, row.names = FALSE, col.names=F)
+      shinyWidgets::show_toast(text = "Please select the tie file that you just downloaded via \" File select \" ",position = "bottom", type = "info",title = "Heads up", timer = 10000, timerProgressBar = TRUE)
     }
+    
   )
   
   #~~~~~~~~~~~~~
