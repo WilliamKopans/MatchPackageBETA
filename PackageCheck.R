@@ -19,6 +19,6 @@ for (i in PackagesToCheck) {
 
 print(paste0("Match Is Installed: ", "Match" %in% rownames(installed.packages())))
  
-#If Match is FALSE then go to the readme and downlaod the binary.
+#If Match is FALSE then go to the readme and download the binary.
 
 

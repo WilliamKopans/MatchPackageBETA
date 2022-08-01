@@ -52,14 +52,15 @@
 #'
 #' @return shiny application object
 #'
-#' @example \dontrun {Match::launchApp()}
+#' @examples \dontrun{Match::launchApp()}
 #'
 #' @import shiny
+#' @usage NULL
 
 
 # wrapper for shiny::shinyApp()
 launchApp <- function() {
-  message('Dev Version 1.0.1')
+  message('Dev Version 1.0.2')
   shiny::shinyApp(ui = ui, server = server)
 }
 
@@ -71,7 +72,7 @@ launchApp <- function() {
   
 
 PackagesToCheck <- list("ggplot2","ggrepel", "rio", "astrochron", "ggiraph", "systemfonts",
-                        "shinyjs", "caret", "shinyFiles", "stringr", "data.table", "devtools",
+                        "shinyjs", "caret", "shinyFiles", "stringr", "data.table",
                         "tibble", "shinythemes", "shinyWidgets", "stats", "utils", "dplyr", 
                         "ggplot2", "shiny", "plotly", "shinyFiles")
 
@@ -87,8 +88,8 @@ for (i in PackagesToCheck) {
 jscode <- "shinyjs.closeWindow = function() { window.close(); }"
 
 ui <- fluidPage(theme = shinythemes::shinytheme("spacelab"),
-                useShinyjs(),
-                extendShinyjs(text = jscode, functions = c("closeWindow")),
+                shinyjs::useShinyjs(),
+                shinyjs::extendShinyjs(text = jscode, functions = c("closeWindow")),
                 navbarPage("MatchApp App", id = "tabs",
                            tabPanel("Top Data Import",
                                     h3("Import Data to the Top Plot"),

@@ -1,12 +1,12 @@
 Package: Match
 Type: Package
 Title: Matches Time Series Data
-Version: 1.0.1
+Version: 1.0.2
 Author: William Kopans
-Maintainer: William Kopans <william.kopans@wheelerschool.org>
+Maintainer: William Kopans <william.kopans@colby.edu>
 Description: Front end application to allign time scales.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.1.1
+RoxygenNote: 7.2.1
 Imports: shiny, rio, astrochron,  plotly, ggiraph, shinyjs, caret, shinyFiles, stringr, data.table, tibble, ggrepel, shinythemes, shinyWidgets, fs, dplyr, ggplot2, systemfonts

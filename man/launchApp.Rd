@@ -17,3 +17,7 @@ launchApp
 \note{
 Does not accept any arguments.
 }
+\examples{
+\dontrun{Match::launchApp()}
+
+}
