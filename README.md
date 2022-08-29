@@ -40,9 +40,9 @@ Once you have the path name copied, go to R or RStudio. In the console window, t
 
 ### To launch the application run:
 
-Match::launchApp()
+`Match::launchApp()`
 
-Note: You will receive error messages along the lines of "replacing previous import," these indicate that multiple packages share variable names and do not impact the application. \### Finally, click on the local address followed by `Listening on`
+Note: You will receive error messages along the lines of "replacing previous import," these indicate that multiple packages share variable names and do not impact the application. \### Finally, click on the local address followed by `Listening on`.
 
 # Tutorial
 

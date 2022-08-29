@@ -1,7 +1,7 @@
 Package: Match
 Type: Package
 Title: Matches Time Series Data
-Version: 1.0.2
+Version: 1.0.3
 Author: William Kopans
 Maintainer: William Kopans <william.kopans@colby.edu>
 Description: Front end application to allign time scales.

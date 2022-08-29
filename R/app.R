@@ -1,20 +1,3 @@
-#Edited October 10th, 2021
-#library(ggplot2, warn.conflicts = FALSE) #The conflicts that I am turning off are those which occur when libraries share function names
-#library(dplyr, warn.conflicts = FALSE) #For more information, check: https://stackoverflow.com/questions/39137110/what-does-the-following-object-is-masked-from-packagexxx-mean
-#library(shiny, warn.conflicts = FALSE)
-#library(rio, warn.conflicts = FALSE)
-#library(astrochron, warn.conflicts = FALSE)
-#library(plotly, warn.conflicts = FALSE)
-#library(ggiraph, warn.conflicts = FALSE)
-#library(shinyjs, warn.conflicts = FALSE)
-#library(caret, warn.conflicts = FALSE)
-#library(shinyFiles, warn.conflicts = FALSE)
-#library(stringr, warn.conflicts = FALSE)
-#library(data.table, warn.conflicts = FALSE)
-#library(tibble, warn.conflicts = FALSE)
-#library(ggrepel, warn.conflicts = FALSE)
-#library(shinythemes, warn.conflicts = FALSE)
-#library(shinyWidgets, warn.conflicts = FALSE)
 #                            **Main App File**
 #' @import ggrepel
 #' @import rio
@@ -40,12 +23,6 @@
 #' @note Does not accept any arguments.
 
 
-
-
-
-
-###
-
 # launches the shinyAppDemo app
 #'
 #' @export launchApp
@@ -60,21 +37,19 @@
 
 # wrapper for shiny::shinyApp()
 launchApp <- function() {
-  message('Dev Version 1.0.2')
+  message('Dev Version 1.0.3')
   shiny::shinyApp(ui = ui, server = server)
 }
 
 
 
 
-  
-  
-  
 
-PackagesToCheck <- list("ggplot2","ggrepel", "rio", "astrochron", "ggiraph", "systemfonts",
-                        "shinyjs", "caret", "shinyFiles", "stringr", "data.table",
-                        "tibble", "shinythemes", "shinyWidgets", "stats", "utils", "dplyr", 
-                        "ggplot2", "shiny", "plotly", "shinyFiles")
+PackagesToCheck <-
+  list("ggplot2", "ggrepel", "rio", "astrochron", "ggiraph", "systemfonts", 
+       "shinyjs", "caret", "shinyFiles", "stringr", "data.table", "tibble", 
+       "shinythemes", "shinyWidgets", "stats", "utils", "dplyr", "ggplot2", 
+       "shiny", "plotly", "shinyFiles")
 
 for (i in PackagesToCheck) {
   message(paste0(i, ": ", i %in% rownames(installed.packages())))
@@ -169,6 +144,10 @@ ui <- fluidPage(theme = shinythemes::shinytheme("spacelab"),
                                       inputId = "FinalCheck",
                                       label = "Finalize Tie File"
                                     ),
+                                    actionButton(
+                                      inputId = "RefreshPlots",
+                                      label = "Refresh Plots"
+                                    ),
                                     br(),
                                     shinyWidgets::dropdownButton(
                                       inputId = "TopDropdownSettings",
@@ -179,11 +158,12 @@ ui <- fluidPage(theme = shinythemes::shinytheme("spacelab"),
                                       size = "default",
                                       width = "90%",
                                       uiOutput("SliderTopX"),
-                                      uiOutput("SliderTopY")),
-                                      
+                                      uiOutput("SliderTopY")
+                                    ),
+                                    
                                     br(),
                                     
-                                    column(3,numericInput("CoreTop", label = ("Core Number"), value = 0)),
+                                    column(3, numericInput("CoreTop", label = ("Core Number"), value = 0, step = 0.5)),
                                     plotOutput("FullTopPlot", click = "TopPlot_click"),
                                     br(),
                                     br(),
@@ -198,10 +178,15 @@ ui <- fluidPage(theme = shinythemes::shinytheme("spacelab"),
                                       circle = FALSE,
                                       size = "default",
                                       width = "90%",
-                                    uiOutput("SliderBotX"),
-                                    uiOutput("SliderBotY")),
+                                      uiOutput("SliderBotX"),
+                                      uiOutput("SliderBotY")
+                                    ),
                                     
-                                    column(3,numericInput("CoreBottom", label = ("Core Number"), value = 1)),
+                                    column(3, numericInput(
+                                      "CoreBottom",
+                                      label = ("Core Number"),
+                                      value = 1, step = 0.5
+                                    )),
                                     plotOutput("FullBottomPlot", click = "BottomPlot_click"),
                                     
                                     
@@ -258,7 +243,9 @@ server <- function(input, output) {
   #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   
   observeEvent(input$FinalShowTopPlot, {
- 
+    
+
+    
     output$FullTopPlot <- renderPlot({
       ggplot2::ggplot()+
         ggplot2::geom_line(StructuredTopData(), mapping = ggplot2::aes_string(x= input$dynamicTopX, y = input$dynamicTopY)) +
@@ -331,7 +318,7 @@ server <- function(input, output) {
         
         TopOriginal<- suppressWarnings(lapply(TopOriginal, as.numeric))
         TieData <- suppressWarnings(lapply(TieData, as.numeric))
-
+        
         total <- merge(TopOriginal,TieData, by.x = "Shared1", by.y = "Shared2")
         
         
@@ -379,7 +366,6 @@ server <- function(input, output) {
         TieComp <- suppressWarnings(lapply(TieComp, as.numeric))
         
         
-        
         total <- merge(Main,TieComp, by.x="Shared1", by.y="Shared2")
         
         
@@ -414,7 +400,6 @@ server <- function(input, output) {
       
     })
   })
-  
   
   
   
@@ -554,7 +539,6 @@ server <- function(input, output) {
       df <- TiePointData()
     
       
-      
       df[input$FinalRowNumber,1] <- NA
       df[input$FinalRowNumber,2] <- NA
       df[input$FinalRowNumber,3] <- NA
@@ -615,16 +599,39 @@ server <- function(input, output) {
       
     }
     
-    
 
+  })
+  
+  RefreshPlots <- observeEvent(input$RefreshPlots, {
+    
+    
+    output$FullTopPlot <- renderPlot({
+      ggplot2::ggplot()+
+        ggplot2::geom_line(StructuredTopData(), mapping = ggplot2::aes_string(x= input$dynamicTopX, y = input$dynamicTopY)) +
+        ggplot2::geom_point(StructuredTopData(), mapping = ggplot2::aes_string(x= input$dynamicTopX, y = input$dynamicTopY),alpha = 0.3) +
+        ggplot2::theme_bw()+
+        ggplot2::coord_cartesian(ylim = c(input$YRangeTop[1], input$YRangeTop[2]), xlim = c(input$XrangeTop[1], input$XrangeTop[2]), expand = FALSE) + TopGeom()
+    })
+    
+    output$FullBottomPlot <- renderPlot({
+      
+      ggplot2::ggplot()+
+        ggplot2::geom_line(StructuredBottomData(), mapping = ggplot2::aes_string(x= input$dynamicBottomX, y = input$dynamicBottomY)) +
+        ggplot2::geom_point(StructuredBottomData(), mapping = ggplot2::aes_string(x= input$dynamicBottomX, y = input$dynamicBottomY),alpha = 0.3) +
+        ggplot2::theme_bw() +
+        ggplot2::coord_cartesian(ylim = c(input$YRangeBot[1], input$YRangeBot[2]), xlim = c(input$XRangeBot[1], input$XRangeBot[2]), expand = FALSE) + BottomGeom()
+      
+      
+    })
+    
+    
+    
   })
   
   
   
   
-  
   #~
-  
   
   
   
@@ -655,13 +662,13 @@ server <- function(input, output) {
   
   #~~~~~~~~~~~~~
   
-  
 
   
   observeEvent(input$tabs, {
-    
-    if(input$tabs == "Exit Application"){
-      suppressWarnings({message("Note, a warning may appear when closing but does not impact functionality.")})
+    if (input$tabs == "Exit Application") {
+      suppressWarnings({
+        message("Note, a warning may appear when closing but does not impact functionality.")
+      })
       stopApp()
       js$closeWindow()
       js$window.close()
@@ -671,6 +678,5 @@ server <- function(input, output) {
     
   })
   
-
+  
 }
-
