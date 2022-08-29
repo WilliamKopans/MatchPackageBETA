@@ -666,13 +666,8 @@ server <- function(input, output) {
   
   observeEvent(input$tabs, {
     if (input$tabs == "Exit Application") {
-      suppressWarnings({
-        message("Note, a warning may appear when closing but does not impact functionality.")
-      })
-      stopApp()
-      js$closeWindow()
-      js$window.close()
-      stopApp()
+      stopApp(returnValue = invisible())
+
     } 
     
     
