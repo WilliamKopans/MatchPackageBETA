@@ -13,7 +13,7 @@ Note: Both installations are fairly self-explanatory through their websites, but
 
 -   Download [this file](https://drive.google.com/file/d/1UBYbJjXV85MJSmrg9lHh00LHEZjIvLMK/view?usp=sharing) (top right is download button) and double click the file to open in R or RStudio. Then, run the file. To run the file, select all then press command and return. Exact key bindings may change by operating system. Try control instead of command on a PC.
 
-    -   A lot of packages should start to download and this may take a few minutes. Each package is a matter of kilobytes, so although it looks like a lot, you are downloading the equivalent of one or two smartphone photos.
+    -   A lot of packages should start to download and this may take a few minutes. Each package is a matter of kilobytes, so although it looks like a lot, you are downloading the equivalent of a few smartphone photos.
     -   If you get the message `Do you want to install from sources the package which needs compilation?`, just type `Yes` and click enter/return.
 
 ## There are two ways to install the application, either with or without Git. Both will work, but I suggest opting for the second method if you do not have experience with Git.
@@ -32,9 +32,9 @@ Then run: `Sys.unsetenv("GITHUB_PAT")`
 
 ## To install without Git:
 
-Click [HERE](https://github.com/WilliamKopans/MatchPackageBETA/blob/main/Match_1.0.1.tgz?raw=true) to download the binary package. Next, locate the file (usually in your downloads folder) and copy the path name. To find the path name easily on a Mac, right-click the file and hold option. This should make a button show up saying: `Copy "Match_1.0.1.tgz" as Pathname`
+Click [HERE](https://github.com/WilliamKopans/MatchPackageBETA/blob/main/Match_1.0.3.tgz?raw=true) to download the binary package. Next, locate the file (usually in your downloads folder) and copy the path name. To find the path name easily on a Mac, right-click the file and hold option. This should make a button show up saying: `Copy "Match_1.0.1.tgz" as Pathname`
 
-Once you have the path name copied, go to R or RStudio. In the console window, type: `install.packages("Path to downloaded file",repos = NULL)`, putting the path name within the quotes and click enter. It should look something like this: `install.packages("/Users/williamkopans/Downloads/Match_1.0.1.tgz",repos = NULL)`.
+Once you have the path name copied, go to R or RStudio. In the console window, type: `install.packages("Path to downloaded file",repos = NULL)`, putting the path name within the quotes and click enter. It should look something like this: `install.packages("/Users/FirstLast/Downloads/Match_1.0.1.tgz",repos = NULL)`.
 
 # Once the package is downloaded:
 
