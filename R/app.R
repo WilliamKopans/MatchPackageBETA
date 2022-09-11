@@ -553,6 +553,38 @@ server <- function(input, output) {
         return(TieP)
       })
       
+      #refreshing plots
+      output$FullTopPlot <- renderPlot({
+        ggplot2::ggplot()+
+          ggplot2::geom_line(StructuredTopData(), mapping = ggplot2::aes_string(x= input$dynamicTopX, y = input$dynamicTopY)) +
+          ggplot2::geom_point(StructuredTopData(), mapping = ggplot2::aes_string(x= input$dynamicTopX, y = input$dynamicTopY),alpha = 0.3) +
+          ggplot2::theme_bw()+
+          ggplot2::coord_cartesian(ylim = c(input$YRangeTop[1], input$YRangeTop[2]), xlim = c(input$XrangeTop[1], input$XrangeTop[2]), expand = FALSE) + TopGeom()
+      })
+      
+      output$FullBottomPlot <- renderPlot({
+        
+        ggplot2::ggplot()+
+          ggplot2::geom_line(StructuredBottomData(), mapping = ggplot2::aes_string(x= input$dynamicBottomX, y = input$dynamicBottomY)) +
+          ggplot2::geom_point(StructuredBottomData(), mapping = ggplot2::aes_string(x= input$dynamicBottomX, y = input$dynamicBottomY),alpha = 0.3) +
+          ggplot2::theme_bw() +
+          ggplot2::coord_cartesian(ylim = c(input$YRangeBot[1], input$YRangeBot[2]), xlim = c(input$XRangeBot[1], input$XRangeBot[2]), expand = FALSE) + BottomGeom()
+        
+        
+      })
+      
+      #refreshing plots end
+      
+      TieP <- TiePointData()[input$FinalRowNumber,] #refreshing the little box which displays the tie point data for the particular row
+      
+      
+      
+      
+      
+      
+      
+      
+      
     
     } else {
       #false
